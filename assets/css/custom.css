@@ -1,0 +1,2413 @@
+/**
+ * Website Program Magang - Custom Styles
+ * Theme: Maroon (#6B1026) + Putih (#FFFFFF)
+ * Adheres strictly to PRD Design System & WCAG AA Contrast
+ */
+
+:root {
+  /* Brand Color Palette */
+  --color-maroon-primary: #6B1026;
+  --color-maroon-dark: #450A18;
+  --color-maroon-accent: #8B1E3F;
+  --color-maroon-light: #F7EAEF;
+  --color-white: #FFFFFF;
+  --color-soft-bg: #F8F6F6;
+  --color-text-primary: #292329;
+  --color-text-secondary: #6F6870;
+  --color-border: #E8E2E5;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+
+  /* Global Template Variable Overrides */
+  --background-color: #FFFFFF;
+  --default-color: #292329;
+  --heading-color: #450A18;
+  --accent-color: #6B1026;
+  --surface-color: #FFFFFF;
+  --contrast-color: #FFFFFF;
+
+  /* Navigation Variables */
+  --nav-color: #292329;
+  --nav-hover-color: #6B1026;
+  --nav-mobile-background-color: #FFFFFF;
+  --nav-dropdown-background-color: #FFFFFF;
+  --nav-dropdown-color: #292329;
+  --nav-dropdown-hover-color: #6B1026;
+}
+
+/* Background Utility Classes */
+.light-background {
+  --background-color: #F8F6F6 !important;
+  --surface-color: #FFFFFF !important;
+  background-color: var(--color-soft-bg) !important;
+}
+
+.white-background {
+  background-color: #FFFFFF !important;
+}
+
+.maroon-gradient-bg {
+  background: linear-gradient(135deg, #450A18 0%, #6B1026 60%, #8B1E3F 100%) !important;
+  color: #FFFFFF !important;
+}
+
+/* Base Typography Overrides */
+body {
+  color: var(--color-text-primary);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-maroon-dark);
+  font-family: var(--heading-font);
+  font-weight: 700;
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+ * 1. Header & Navigation (Navbar)
+ * -------------------------------------------------------------------------- */
+.header {
+  --background-color: #FFFFFF !important;
+  --surface-color: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 15px rgba(107, 16, 38, 0.04);
+  padding: 8px 0 !important;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  padding: 6px 0 !important;
+  box-shadow: 0 3px 20px rgba(107, 16, 38, 0.08);
+}
+
+.header .logo img {
+  max-height: 35px !important;
+  width: auto;
+}
+
+.header .logo h1.sitename {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.header .logo span.highlight {
+  color: var(--color-maroon-accent);
+}
+
+.header .logo .logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+/* Navmenu Desktop Right Alignment */
+@media (min-width: 1200px) {
+  .header .navmenu {
+    margin-left: auto !important;
+    margin-right: 10px !important;
+  }
+}
+
+.navmenu ul {
+  gap: 3px !important;
+}
+
+.navmenu a, 
+.navmenu a:focus {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  font-size: 14px !important;
+  padding: 6px 11px !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  line-height: 1.4 !important;
+}
+
+/* Hilangkan garis tebal bawah template bawaan agar navbar tidak tinggi dan bersih */
+.navmenu > ul > li > a:before {
+  display: none !important;
+}
+
+.navmenu a:hover,
+.navmenu .active,
+.navmenu .active:focus {
+  color: var(--color-maroon-primary) !important;
+  background-color: var(--color-maroon-light) !important;
+}
+
+/* Chevron & Dropdown Indicators */
+.navmenu a .toggle-dropdown,
+.navmenu a i.bi-chevron-down {
+  font-size: 11px;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+.navmenu .dropdown:hover > a i.bi-chevron-down,
+.navmenu .dropdown.active > a i.bi-chevron-down {
+  transform: rotate(180deg);
+}
+
+/* Desktop Dropdown Menu */
+@media (min-width: 1200px) {
+  .navmenu .dropdown ul {
+    background: #FFFFFF !important;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 12px 35px rgba(69, 10, 24, 0.12);
+    padding: 8px 0;
+    min-width: 250px;
+    top: 100%;
+    margin-top: 8px;
+  }
+  .navmenu .dropdown ul li {
+    min-width: 220px;
+  }
+  .navmenu .dropdown ul a {
+    color: var(--color-text-primary) !important;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+    display: block;
+    border-radius: 0;
+    background: transparent !important;
+  }
+  .navmenu .dropdown ul a:hover {
+    color: var(--color-maroon-primary) !important;
+    background-color: var(--color-maroon-light) !important;
+    padding-left: 24px;
+  }
+}
+
+/* Mobile Nav Adjustments & Mobile Dropdown (Sesuai Desain Mobile Gambar Referensi) */
+@media (max-width: 1199px) {
+  /* Container navmenu pada header bar */
+  .navmenu {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Secara default saat mobile menu tertutup, daftar menu disembunyikan */
+  .navmenu > ul {
+    display: none !important;
+  }
+
+  /* Tombol toggle hamburger di kanan atas header */
+  .mobile-nav-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    border: 1px solid rgba(107, 16, 38, 0.25) !important;
+    border-radius: 8px !important;
+    background-color: #FFFFFF !important;
+    color: var(--color-maroon-primary) !important;
+    font-size: 24px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    margin-right: 0 !important;
+    position: static !important;
+    z-index: 1002 !important;
+  }
+  .mobile-nav-toggle:hover {
+    background-color: #FAF4F5 !important;
+    border-color: var(--color-maroon-primary) !important;
+  }
+
+  body.mobile-nav-active {
+    overflow: visible !important;
+  }
+
+  /* Batalkan full-screen overlay gelap dari main.css agar header dan halaman tetap stabil */
+  body.mobile-nav-active .navmenu {
+    display: flex !important;
+    position: static !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  body.mobile-nav-active .mobile-nav-toggle {
+    position: static !important;
+    color: var(--color-maroon-primary) !important;
+    background-color: #FAF4F5 !important;
+    font-size: 24px !important;
+    z-index: 1002 !important;
+  }
+
+  /* Panel menu putih dropdown yang muncul tepat di bawah header */
+  body.mobile-nav-active .navmenu > ul {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 58px !important;
+    left: 14px !important;
+    right: 14px !important;
+    bottom: auto !important;
+    inset: 58px 14px auto 14px !important;
+    height: auto !important;
+    width: calc(100% - 28px) !important;
+    max-height: calc(100vh - 75px) !important;
+    overflow-y: auto !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(107, 16, 38, 0.12) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 15px 40px rgba(69, 10, 24, 0.18) !important;
+    padding: 14px 14px 14px 14px !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    list-style: none !important;
+  }
+
+  body.mobile-nav-active .navmenu > ul > li {
+    margin-bottom: 4px;
+    width: 100%;
+  }
+
+  body.mobile-nav-active .navmenu > ul > li:not(.nav-mobile-cta) > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 18px !important;
+    border-radius: 50px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #333333 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    width: 100%;
+  }
+
+  /* Item menu yang aktif (Beranda, Tentang Kami, dll) dengan soft maroon pill highlight */
+  body.mobile-nav-active .navmenu > ul > li:not(.nav-mobile-cta) > a.active {
+    background-color: #FDF2F4 !important;
+    color: var(--color-maroon-primary) !important;
+    font-weight: 600 !important;
+  }
+
+  body.mobile-nav-active .navmenu > ul > li:not(.nav-mobile-cta) > a:hover {
+    background-color: #FDF2F4 !important;
+    color: var(--color-maroon-primary) !important;
+  }
+
+  body.mobile-nav-active .navmenu a i,
+  body.mobile-nav-active .navmenu a:focus i {
+    font-size: 13px !important;
+    background: transparent !important;
+    color: inherit !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Dropdown Sub-menu (Jurusan & Program) saat diklik di Mobile */
+  .navmenu .dropdown > a {
+    cursor: pointer;
+  }
+
+  .navmenu .dropdown ul {
+    display: none !important;
+    position: static !important;
+    background-color: #FAF4F5 !important;
+    border-radius: 10px !important;
+    margin: 6px 0 8px 0 !important;
+    padding: 8px 10px !important;
+    border-left: 3px solid var(--color-maroon-primary) !important;
+    list-style: none !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .navmenu .dropdown ul.dropdown-active,
+  .navmenu .dropdown.active > ul {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .navmenu .dropdown ul li {
+    width: 100% !important;
+    margin-bottom: 2px !important;
+  }
+
+  .navmenu .dropdown ul a {
+    display: block !important;
+    padding: 8px 14px !important;
+    font-size: 13.5px !important;
+    color: #495057 !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+  }
+
+  .navmenu .dropdown ul a:hover,
+  .navmenu .dropdown ul a.active {
+    color: var(--color-maroon-primary) !important;
+    background-color: rgba(107, 16, 38, 0.06) !important;
+  }
+
+  /* Tombol "Daftar Magang" di dalam Mobile Nav (Teks Putih Terang & Jarak Border Bawah Pas Rapat) */
+  body.mobile-nav-active .navmenu > ul > li.nav-mobile-cta {
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  body.mobile-nav-active .navmenu > ul > li.nav-mobile-cta > a,
+  body.mobile-nav-active .navmenu > ul > li > a.btn-mobile-daftar-magang,
+  a.btn-mobile-daftar-magang {
+    background-color: var(--color-maroon-primary) !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 12px 20px !important;
+    margin: 0 !important;
+    box-shadow: 0 4px 14px rgba(107, 16, 38, 0.25) !important;
+    display: flex !important;
+    width: 100% !important;
+    text-decoration: none !important;
+  }
+
+  body.mobile-nav-active .navmenu > ul > li.nav-mobile-cta > a:hover,
+  body.mobile-nav-active .navmenu > ul > li > a.btn-mobile-daftar-magang:hover,
+  a.btn-mobile-daftar-magang:hover {
+    background-color: var(--color-maroon-dark) !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+  }
+}
+
+/* Header Action CTA Button: "Daftar Magang" */
+.header .btn-daftar-magang {
+  background-color: var(--color-maroon-primary);
+  color: #FFFFFF !important;
+  font-size: 13.5px !important;
+  font-weight: 700;
+  padding: 7px 20px !important;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-maroon-primary);
+  box-shadow: 0 3px 10px rgba(107, 16, 38, 0.2);
+  white-space: nowrap;
+  line-height: 1.35;
+  margin-left: 6px;
+}
+
+.header .btn-daftar-magang:hover {
+  background-color: var(--color-maroon-dark);
+  border-color: var(--color-maroon-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(107, 16, 38, 0.3);
+  color: #FFFFFF !important;
+}
+
+@media (max-width: 1199px) {
+  .header .btn-daftar-magang {
+    padding: 6px 16px !important;
+    font-size: 12.5px !important;
+    margin-right: 8px;
+  }
+}
+
+/* Backward compatibility */
+.header .btn-whatsapp-header {
+  background-color: var(--color-maroon-primary);
+  color: #FFFFFF !important;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-maroon-primary);
+  box-shadow: 0 4px 14px rgba(107, 16, 38, 0.25);
+}
+
+.header .btn-whatsapp-header:hover {
+  background-color: var(--color-maroon-dark);
+  border-color: var(--color-maroon-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(107, 16, 38, 0.35);
+}
+
+/* -----------------------------------------------------------------------------
+ * 2. Section Title
+ * -------------------------------------------------------------------------- */
+.section-title {
+  text-align: center;
+  padding-bottom: 48px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-title .section-eyebrow {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto 16px auto !important;
+  background-color: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(107, 16, 38, 0.15);
+}
+
+.section-title h2 {
+  display: block !important;
+  width: 100% !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: var(--color-maroon-dark) !important;
+  margin: 0 auto 14px auto !important;
+  padding: 0 !important;
+  background: none !important;
+  border-radius: 0 !important;
+  letter-spacing: -0.5px !important;
+  text-transform: none !important;
+  line-height: 1.3 !important;
+  clear: both !important;
+}
+
+.section-title p {
+  display: block !important;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. Hero Section
+ * -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  background: radial-gradient(circle at top right, rgba(139, 30, 63, 0.06), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(107, 16, 38, 0.04), transparent 40%),
+              #FFFFFF;
+  padding: 80px 0 70px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  border: 1px solid rgba(107, 16, 38, 0.2);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.hero .hero-badge i {
+  color: var(--color-maroon-accent);
+}
+
+.hero h1 {
+  font-size: 2.85rem;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+  line-height: 1.22;
+  margin-bottom: 20px;
+  letter-spacing: -0.8px;
+}
+
+.hero h1 .text-highlight {
+  color: var(--color-maroon-accent);
+  position: relative;
+  display: inline-block;
+}
+
+.hero .hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.btn-primary-maroon {
+  background-color: var(--color-maroon-primary);
+  color: #FFFFFF !important;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 13px 26px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-maroon-primary);
+  box-shadow: 0 4px 14px rgba(107, 16, 38, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-maroon:hover {
+  background-color: var(--color-maroon-dark);
+  border-color: var(--color-maroon-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(107, 16, 38, 0.35);
+}
+
+.btn-secondary-maroon {
+  background-color: #FFFFFF;
+  color: var(--color-maroon-dark) !important;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 13px 26px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-maroon:hover {
+  background-color: var(--color-maroon-light);
+  border-color: var(--color-maroon-primary);
+  color: var(--color-maroon-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Hero Highlights Pill List */
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
+}
+
+.hero-pill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.hero-pill-item i {
+  color: var(--color-maroon-accent);
+  font-size: 16px;
+}
+
+/* Hero Visual & Mockup */
+.hero-visual-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 20px 45px rgba(69, 10, 24, 0.1);
+  border: 1px solid rgba(107, 16, 38, 0.08);
+}
+
+.hero-visual-card img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-floating-badge {
+  position: absolute;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  animation: floatSlow 4s ease-in-out infinite alternate;
+}
+
+.hero-floating-badge.badge-top {
+  top: -20px;
+  right: -15px;
+}
+
+.hero-floating-badge.badge-bottom {
+  bottom: -20px;
+  left: -15px;
+  animation-delay: 2s;
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-8px); }
+}
+
+.hero-floating-badge .badge-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.hero-floating-badge .badge-text h4 {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+}
+
+.hero-floating-badge .badge-text span {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+ * 4. Ringkasan Program (Overview)
+ * -------------------------------------------------------------------------- */
+.program-overview-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 36px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(107, 16, 38, 0.04);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.program-overview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(107, 16, 38, 0.08);
+  border-color: rgba(107, 16, 38, 0.2);
+}
+
+.program-overview-card .card-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.program-overview-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 12px;
+}
+
+.program-overview-card p {
+  font-size: 14.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* -----------------------------------------------------------------------------
+ * 5. Pilihan 5 Jurusan (Majors)
+ * -------------------------------------------------------------------------- */
+.major-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.major-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-maroon-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.major-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(107, 16, 38, 0.25);
+  box-shadow: 0 16px 35px rgba(107, 16, 38, 0.09);
+}
+
+.major-card:hover::before {
+  opacity: 1;
+}
+
+.major-card .major-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.major-card .major-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.major-card .major-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-maroon-primary);
+  background: rgba(107, 16, 38, 0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.major-card h3 {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 10px;
+}
+
+.major-card .major-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.major-card .competency-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.major-card .competency-tag {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-maroon-dark);
+  background: #F4EFF1;
+  padding: 3px 9px;
+  border-radius: 4px;
+  border: 1px solid rgba(107, 16, 38, 0.06);
+}
+
+.major-card .major-cta {
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+}
+
+.major-card .major-cta a,
+.major-card .major-cta .major-cta-btn {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-maroon-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  transition: all 0.2s ease;
+}
+
+.major-card .major-cta a i,
+.major-card .major-cta .major-cta-btn i {
+  font-size: 15px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.major-card .major-cta a:hover,
+.major-card .major-cta .major-cta-btn:hover {
+  color: var(--color-maroon-dark);
+}
+
+.major-card .major-cta a:hover i,
+.major-card .major-cta .major-cta-btn:hover i {
+  transform: translateX(4px);
+}
+
+/* -----------------------------------------------------------------------------
+ * 6. Apa yang Dipelajari (Curriculum Modules)
+ * -------------------------------------------------------------------------- */
+.curriculum-card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  height: 100%;
+  display: flex;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.curriculum-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(107, 16, 38, 0.2);
+  box-shadow: 0 10px 25px rgba(107, 16, 38, 0.06);
+}
+
+.curriculum-card .module-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-maroon-accent);
+  background: var(--color-maroon-light);
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.curriculum-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 6px;
+}
+
+.curriculum-card p {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* -----------------------------------------------------------------------------
+ * 7. Alur Mengikuti Program (Steps)
+ * -------------------------------------------------------------------------- */
+.step-item {
+  position: relative;
+  text-align: center;
+  padding: 24px 16px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.step-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(107, 16, 38, 0.2);
+  box-shadow: 0 12px 28px rgba(107, 16, 38, 0.08);
+}
+
+.step-item .step-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(107, 16, 38, 0.25);
+}
+
+.step-item h4 {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 8px;
+}
+
+.step-item p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* -----------------------------------------------------------------------------
+ * 8. Dokumentasi Pilihan (Gallery)
+ * -------------------------------------------------------------------------- */
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.gallery-filters li {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  padding: 8px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gallery-filters li:hover,
+.gallery-filters li.filter-active {
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+  border-color: var(--color-maroon-primary);
+}
+
+.gallery-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-card .gallery-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(69, 10, 24, 0.9) 0%, transparent 100%);
+  padding: 24px 16px 12px;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.gallery-card .gallery-info h5 {
+  color: #FFFFFF;
+  font-size: 15px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.gallery-card .gallery-info p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+/* -----------------------------------------------------------------------------
+ * 9. Artikel Terbaru (Blog)
+ * -------------------------------------------------------------------------- */
+.blog-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(107, 16, 38, 0.2);
+  box-shadow: 0 16px 35px rgba(107, 16, 38, 0.08);
+}
+
+.blog-card .blog-thumb {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.blog-card .blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.blog-card:hover .blog-thumb img {
+  transform: scale(1.06);
+}
+
+.blog-card .blog-category-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.blog-card .blog-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blog-card .blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.blog-card .blog-meta i {
+  color: var(--color-maroon-accent);
+}
+
+.blog-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.blog-card h3 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.blog-card h3 a:hover {
+  color: var(--color-maroon-accent);
+}
+
+.blog-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.blog-card .blog-link {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-maroon-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s ease;
+}
+
+.blog-card .blog-link:hover {
+  color: var(--color-maroon-dark);
+  gap: 9px;
+}
+
+/* -----------------------------------------------------------------------------
+ * 9.1. Article Single Post Styles (TOC, Baca Juga, Bio, Share, FAQ)
+ * -------------------------------------------------------------------------- */
+.article-header h1 {
+  font-size: clamp(24px, 3.8vw, 36px);
+  line-height: 1.35;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+  letter-spacing: -0.5px;
+}
+
+.article-featured-figure {
+  margin: 24px 0 32px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(69, 10, 24, 0.08);
+  border: 1px solid var(--color-border);
+}
+
+.article-featured-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.article-featured-figure figcaption,
+.article-figure figcaption {
+  background-color: #FAF4F5;
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  line-height: 1.5;
+  padding: 10px 16px;
+  border-left: 4px solid var(--color-maroon-primary);
+  margin-top: 0;
+  font-style: italic;
+}
+
+/* Article Content Typography & Spacing */
+.article-content {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #374151;
+}
+
+.article-content p {
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+.article-content h2 {
+  font-size: clamp(20px, 2.8vw, 26px);
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-top: 38px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-maroon-light);
+  scroll-margin-top: 90px;
+}
+
+.article-content h3 {
+  font-size: clamp(17px, 2.2vw, 21px);
+  font-weight: 700;
+  color: var(--color-maroon-primary);
+  margin-top: 26px;
+  margin-bottom: 12px;
+  scroll-margin-top: 90px;
+}
+
+.article-content ul,
+.article-content ol {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.article-content li {
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+.article-content blockquote {
+  background: #FAF4F5;
+  border-left: 4px solid var(--color-maroon-primary);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 24px;
+  margin: 28px 0;
+  font-style: italic;
+  color: var(--color-maroon-dark);
+}
+
+/* Table of Contents (TOC) */
+.article-toc {
+  background: #FAF4F5;
+  border: 1px solid rgba(107, 16, 38, 0.16);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin: 32px 0 36px 0;
+  box-shadow: 0 4px 15px rgba(69, 10, 24, 0.04);
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toc-header h4 {
+  margin: 0;
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toc-toggle-btn {
+  background: #FFFFFF;
+  border: 1px solid rgba(107, 16, 38, 0.25);
+  color: var(--color-maroon-primary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.toc-toggle-btn:hover {
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+}
+
+.toc-collapse-body {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(107, 16, 38, 0.2);
+}
+
+.toc-collapse-body.show {
+  display: block;
+}
+
+.toc-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.toc-item-h2 {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.toc-item-h2 a {
+  color: #2D3748;
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.toc-item-h2 a:hover {
+  color: var(--color-maroon-primary);
+  text-decoration: underline;
+}
+
+.toc-item-h3 {
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.toc-item-h3 a {
+  color: #4A5568;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.toc-item-h3 a:hover {
+  color: var(--color-maroon-primary);
+  text-decoration: underline;
+}
+
+/* Callout Box "Baca Juga" */
+.baca-juga-box {
+  background: #FAF4F5;
+  border-left: 4px solid var(--color-maroon-primary);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 20px;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 3px 10px rgba(107, 16, 38, 0.04);
+}
+
+.baca-juga-badge {
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.baca-juga-link {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.baca-juga-link:hover {
+  color: var(--color-maroon-accent);
+  text-decoration: underline;
+}
+
+/* Gambar Pendukung di Tengah Artikel */
+.article-figure {
+  margin: 32px 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border);
+}
+
+.article-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Box Share Artikel Aktif */
+.article-share-card {
+  background: #FAF4F5;
+  border: 1px solid rgba(107, 16, 38, 0.12);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin: 36px 0;
+}
+
+.share-buttons-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.share-btn-wa {
+  background: #25D366;
+  color: #FFFFFF !important;
+}
+.share-btn-wa:hover {
+  background: #1EBE5D;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+.share-btn-fb {
+  background: #1877F2;
+  color: #FFFFFF !important;
+}
+.share-btn-fb:hover {
+  background: #0E65D9;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+.share-btn-tw {
+  background: #111111;
+  color: #FFFFFF !important;
+}
+.share-btn-tw:hover {
+  background: #000000;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+.share-btn-in {
+  background: #0A66C2;
+  color: #FFFFFF !important;
+}
+.share-btn-in:hover {
+  background: #084E96;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+.share-btn-copy {
+  background: #FFFFFF;
+  border: 1px solid rgba(107, 16, 38, 0.25);
+  color: var(--color-maroon-primary);
+  cursor: pointer;
+}
+.share-btn-copy:hover {
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Kartu Bio Penulis */
+.author-bio-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 38px 0;
+  box-shadow: 0 8px 25px rgba(69, 10, 24, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.author-bio-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-maroon-light);
+  flex-shrink: 0;
+}
+
+.author-bio-info h5 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 2px;
+}
+
+.author-bio-role {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-maroon-primary);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.author-bio-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .author-bio-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 10. FAQ Accordion (AEO Optimized)
+ * -------------------------------------------------------------------------- */
+.faq-accordion .accordion-item {
+  border: 1px solid var(--color-border);
+  border-radius: 12px !important;
+  margin-bottom: 14px;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s ease;
+}
+
+.faq-accordion .accordion-item:hover {
+  border-color: rgba(107, 16, 38, 0.2);
+}
+
+.faq-accordion .accordion-button {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  background: #FFFFFF;
+  padding: 18px 22px;
+  box-shadow: none;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--color-maroon-light);
+  color: var(--color-maroon-primary);
+  box-shadow: none;
+}
+
+.faq-accordion .accordion-button::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236B1026'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+.faq-accordion .accordion-body {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  padding: 20px 22px;
+  background-color: #FFFFFF;
+}
+
+.faq-accordion .accordion-body strong {
+  color: var(--color-text-primary);
+}
+
+/* -----------------------------------------------------------------------------
+ * 11. CTA Penutup (WhatsApp Consultation Banner & Maroon Gradient CTA Sections)
+ * -------------------------------------------------------------------------- */
+.cta-banner {
+  background: linear-gradient(135deg, #450A18 0%, #6B1026 60%, #8B1E3F 100%);
+  border-radius: 20px;
+  padding: 56px 40px;
+  color: #FFFFFF !important;
+  box-shadow: 0 20px 45px rgba(69, 10, 24, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Memastikan Seluruh Judul di CTA Banner & Maroon Gradient Berwarna Putih Bersih */
+.cta-banner h1,
+.cta-banner h2,
+.cta-banner h3,
+.cta-banner h4,
+section[style*="linear-gradient"] h1,
+section[style*="linear-gradient"] h2,
+section[style*="linear-gradient"] h3,
+section[style*="linear-gradient"] h4,
+section[style*="450A18"] h1,
+section[style*="450A18"] h2,
+section[style*="450A18"] h3,
+section[style*="450A18"] h4,
+div[style*="linear-gradient"] h1,
+div[style*="linear-gradient"] h2,
+div[style*="linear-gradient"] h3,
+div[style*="linear-gradient"] h4,
+div[style*="450A18"] h1,
+div[style*="450A18"] h2,
+div[style*="450A18"] h3,
+div[style*="450A18"] h4,
+.cta-section h1,
+.cta-section h2,
+.cta-section h3,
+.cta-section h4 {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+
+.cta-banner h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+/* Memastikan Seluruh Paragraf / Deskripsi di CTA Berwarna Putih Bersih & 100% Terlihat */
+.cta-banner p,
+.cta-banner .lead,
+section[style*="linear-gradient"] p,
+section[style*="linear-gradient"] .lead,
+section[style*="linear-gradient"] p.lead,
+section[style*="linear-gradient"] p.small,
+section[style*="450A18"] p,
+section[style*="450A18"] .lead,
+section[style*="450A18"] p.lead,
+section[style*="450A18"] p.small,
+div[style*="linear-gradient"] p,
+div[style*="linear-gradient"] .lead,
+div[style*="linear-gradient"] p.lead,
+div[style*="linear-gradient"] p.small,
+div[style*="450A18"] p,
+div[style*="450A18"] .lead,
+div[style*="450A18"] p.lead,
+div[style*="450A18"] p.small,
+.cta-section p,
+.cta-section .lead {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  opacity: 1 !important;
+  font-size: 16.5px;
+  line-height: 1.6;
+}
+
+.cta-banner p {
+  max-width: 650px;
+  margin: 0 auto 32px;
+}
+
+/* Override text-white-50 di dalam kartu / section maroon */
+section[style*="linear-gradient"] .text-white-50,
+section[style*="450A18"] .text-white-50,
+div[style*="linear-gradient"] .text-white-50,
+div[style*="450A18"] .text-white-50 {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+/* Tombol WhatsApp Utama di CTA Banner (Putih Solid dengan Teks Maroon Tebal) */
+.btn-whatsapp-white,
+.cta-banner .btn-cta-whatsapp,
+.btn-cta-whatsapp {
+  background-color: #FFFFFF !important;
+  color: var(--color-maroon-dark, #450A18) !important;
+  -webkit-text-fill-color: var(--color-maroon-dark, #450A18) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  padding: 14px 32px !important;
+  border-radius: 50px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid #FFFFFF !important;
+  text-decoration: none !important;
+}
+
+.btn-whatsapp-white span,
+.cta-banner .btn-cta-whatsapp span,
+.btn-cta-whatsapp span {
+  color: var(--color-maroon-dark, #450A18) !important;
+  -webkit-text-fill-color: var(--color-maroon-dark, #450A18) !important;
+  font-weight: 700 !important;
+}
+
+.btn-whatsapp-white:hover,
+.cta-banner .btn-cta-whatsapp:hover,
+.btn-cta-whatsapp:hover {
+  background-color: #FAF4F5 !important;
+  color: var(--color-maroon-primary, #6B1026) !important;
+  -webkit-text-fill-color: var(--color-maroon-primary, #6B1026) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
+}
+
+.btn-whatsapp-white:hover span,
+.cta-banner .btn-cta-whatsapp:hover span,
+.btn-cta-whatsapp:hover span {
+  color: var(--color-maroon-primary, #6B1026) !important;
+  -webkit-text-fill-color: var(--color-maroon-primary, #6B1026) !important;
+}
+
+.btn-whatsapp-white i,
+.cta-banner .btn-cta-whatsapp i,
+.btn-cta-whatsapp i {
+  color: #25D366 !important;
+  font-size: 20px !important;
+}
+
+/* Tombol Sekunder di CTA Banner ("Lihat Pilihan Jurusan") - Teks & Border Putih Terang */
+.cta-banner .btn-outline-light,
+.cta-banner .btn-outline-secondary,
+section[style*="linear-gradient"] .btn-outline-light,
+section[style*="450A18"] .btn-outline-light,
+div[style*="linear-gradient"] .btn-outline-light,
+div[style*="450A18"] .btn-outline-light {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  padding: 13px 30px !important;
+  border-radius: 50px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.cta-banner .btn-outline-light:hover,
+.cta-banner .btn-outline-secondary:hover,
+section[style*="linear-gradient"] .btn-outline-light:hover,
+section[style*="450A18"] .btn-outline-light:hover,
+div[style*="linear-gradient"] .btn-outline-light:hover,
+div[style*="450A18"] .btn-outline-light:hover {
+  background-color: #FFFFFF !important;
+  color: var(--color-maroon-dark, #450A18) !important;
+  -webkit-text-fill-color: var(--color-maroon-dark, #450A18) !important;
+  border-color: #FFFFFF !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Tombol Putih pada Section CTA Berlatar Belakang Maroon di Halaman Lain */
+section[style*="linear-gradient"] .btn-light,
+section[style*="450A18"] .btn-light,
+div[style*="linear-gradient"] .btn-light,
+div[style*="450A18"] .btn-light,
+.cta-section .btn-light {
+  background-color: #FFFFFF !important;
+  color: var(--color-maroon-dark, #450A18) !important;
+  -webkit-text-fill-color: var(--color-maroon-dark, #450A18) !important;
+  font-weight: 700 !important;
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+section[style*="linear-gradient"] .btn-light:hover,
+section[style*="450A18"] .btn-light:hover,
+div[style*="linear-gradient"] .btn-light:hover,
+div[style*="450A18"] .btn-light:hover,
+.cta-section .btn-light:hover {
+  background-color: #FAF4F5 !important;
+  color: var(--color-maroon-primary, #6B1026) !important;
+  -webkit-text-fill-color: var(--color-maroon-primary, #6B1026) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+section[style*="linear-gradient"] .btn-light i.bi-whatsapp,
+section[style*="450A18"] .btn-light i.bi-whatsapp,
+div[style*="linear-gradient"] .btn-light i.bi-whatsapp,
+div[style*="450A18"] .btn-light i.bi-whatsapp,
+.cta-section .btn-light i.bi-whatsapp {
+  color: #25D366 !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * 12. Footer
+ * -------------------------------------------------------------------------- */
+.footer {
+  background-color: #FFFFFF !important;
+  border-top: 1px solid var(--color-border);
+  padding: 60px 0 30px;
+  color: var(--color-text-secondary);
+}
+
+.footer .footer-logo h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+  margin-bottom: 12px;
+}
+
+.footer .footer-logo p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.footer h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer ul li a:hover {
+  color: var(--color-maroon-primary);
+  transform: translateX(3px);
+}
+
+.footer .footer-contact-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.footer .footer-contact-item i {
+  color: var(--color-maroon-primary);
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+  font-size: 13.5px;
+}
+
+/* -----------------------------------------------------------------------------
+ * 13. Floating WhatsApp Button & Floating Scroll-Top Button
+ * -------------------------------------------------------------------------- */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-4px);
+}
+
+.floating-whatsapp .btn-whatsapp-bubble {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid #FFFFFF;
+}
+
+.floating-whatsapp .btn-whatsapp-bubble:hover {
+  background-color: #1ea952;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.6);
+}
+
+/* Floating Scroll-Top Button (Ditempatkan persis di atas tombol WhatsApp melayang) */
+.scroll-top {
+  position: fixed !important;
+  visibility: hidden;
+  opacity: 0;
+  right: 31px !important;
+  bottom: 94px !important;
+  z-index: 999 !important;
+  background-color: var(--color-maroon-primary) !important;
+  color: #FFFFFF !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(107, 16, 38, 0.35) !important;
+  border: 2px solid #FFFFFF !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none;
+}
+
+.scroll-top i {
+  font-size: 22px;
+  color: #FFFFFF !important;
+  line-height: 1;
+}
+
+.scroll-top:hover {
+  background-color: var(--color-maroon-dark) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(107, 16, 38, 0.5) !important;
+}
+
+.scroll-top.active {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * 14. About Home Section Styles
+ * -------------------------------------------------------------------------- */
+.about-home {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-home .about-lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-maroon-dark);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.about-home .about-text {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.about-home .about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 575px) {
+  .about-home .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .about-home .about-stat-box {
+    padding: 14px 10px !important;
+  }
+  .about-home .about-stat-box .stat-num {
+    font-size: 22px !important;
+  }
+  .about-home .about-stat-box .stat-desc {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+.about-home .about-stat-box {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.about-home .about-stat-box:hover {
+  transform: translateY(-3px);
+  border-color: rgba(107, 16, 38, 0.25);
+  box-shadow: 0 8px 20px rgba(107, 16, 38, 0.08);
+}
+
+.about-home .about-stat-box .stat-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-maroon-primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.about-home .about-stat-box .stat-desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  margin: 0;
+}
+
+.about-home .about-img-box {
+  position: relative;
+  padding: 10px;
+}
+
+.about-home .about-img-main {
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(69, 10, 24, 0.1);
+  width: 100%;
+  object-fit: cover;
+}
+
+.about-home .about-badge-float {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-home .about-badge-float i {
+  font-size: 28px;
+  color: var(--color-maroon-primary);
+}
+
+.about-home .about-badge-float h5 {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+}
+
+.about-home .about-badge-float p {
+  font-size: 12px;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+ * 15. Portofolio Section Styles
+ * -------------------------------------------------------------------------- */
+.portfolio-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(107, 16, 38, 0.2);
+  box-shadow: 0 16px 35px rgba(107, 16, 38, 0.08);
+}
+
+.portfolio-card .portfolio-thumb {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.portfolio-card .portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-thumb img {
+  transform: scale(1.06);
+}
+
+.portfolio-card .portfolio-category-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--color-maroon-primary);
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.portfolio-card .portfolio-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.portfolio-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.portfolio-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin-bottom: 18px;
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+.portfolio-card .portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.portfolio-card .portfolio-tag {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-maroon-dark);
+  background: #F4EFF1;
+  padding: 3px 9px;
+  border-radius: 4px;
+  border: 1px solid rgba(107, 16, 38, 0.06);
+}
+
+/* -----------------------------------------------------------------------------
+ * 16. Testimonials Section Styles
+ * -------------------------------------------------------------------------- */
+.testimonial-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(107, 16, 38, 0.2);
+  box-shadow: 0 16px 35px rgba(107, 16, 38, 0.08);
+}
+
+.testimonial-card .quote-icon {
+  font-size: 32px;
+  color: var(--color-maroon-accent);
+  opacity: 0.35;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.testimonial-card .star-rating {
+  color: #FFB800;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.testimonial-card .testimonial-quote {
+  font-size: 14.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.testimonial-card .testimonial-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.testimonial-card .profile-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-maroon-light);
+}
+
+.testimonial-card .profile-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-maroon-dark);
+  margin: 0 0 2px 0;
+}
+
+.testimonial-card .profile-info span {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+
+/* -----------------------------------------------------------------------------
+ * Testimonial Horizontal Scroll Container (Nambah Kolom Bukan Nambah Baris)
+ * Menampilkan testimoni berjajar ke samping yang dapat di-scroll / digeser ke kanan-kiri.
+ * -------------------------------------------------------------------------- */
+.testimonial-scroll-container {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 20px !important;
+  padding-top: 6px !important;
+  gap: 24px !important;
+}
+
+.testimonial-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.testimonial-scroll-container::-webkit-scrollbar-track {
+  background: #F1EFF0;
+  border-radius: 10px;
+}
+
+.testimonial-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--color-maroon-primary);
+  border-radius: 10px;
+}
+
+.testimonial-scroll-container > .testimonial-col {
+  flex: 0 0 calc((100% - 48px) / 3) !important;
+  min-width: 320px !important;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 991.98px) {
+  .testimonial-scroll-container > .testimonial-col {
+    flex: 0 0 calc((100% - 24px) / 2) !important;
+    min-width: 280px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .testimonial-scroll-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    gap: 16px !important;
+  }
+
+  .testimonial-scroll-container > .testimonial-col {
+    flex: 0 0 88% !important;
+    min-width: 260px !important;
+    max-width: 88% !important;
+    scroll-snap-align: center;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Mobile Horizontal Scroll 1-Column Carousel (Portofolio, Galeri, Testimoni)
+ * Mengubah kolom menjadi 1 kolom yang dapat digeser (swipe) kiri-kanan di mobile.
+ * -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .mobile-horizontal-scroll {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 22px !important;
+    padding-top: 6px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    gap: 16px !important;
+  }
+
+  .mobile-horizontal-scroll::-webkit-scrollbar {
+    height: 5px;
+  }
+  .mobile-horizontal-scroll::-webkit-scrollbar-track {
+    background: #F1EFF0;
+    border-radius: 10px;
+    margin: 0 20px;
+  }
+  .mobile-horizontal-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-maroon-primary);
+    border-radius: 10px;
+  }
+
+  .mobile-horizontal-scroll > [class*="col-"] {
+    flex: 0 0 88% !important;
+    max-width: 88% !important;
+    width: 88% !important;
+    scroll-snap-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .mobile-horizontal-scroll .portfolio-card,
+  .mobile-horizontal-scroll .gallery-card,
+  .mobile-horizontal-scroll .testimonial-card {
+    height: 100%;
+    margin-bottom: 0;
+  }
+}
+
+
+
+
