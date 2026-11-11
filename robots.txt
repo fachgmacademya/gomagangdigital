@@ -1,0 +1,25 @@
+# robots.txt for Website Program Magang
+# https://gomagangdigital.vercel.app/
+
+User-agent: *
+Allow: /
+Disallow: /assets/vendor/
+Disallow: /forms/
+
+# Googlebot & AI Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://gomagangdigital.vercel.app/sitemap.xml

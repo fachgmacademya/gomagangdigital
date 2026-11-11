@@ -1,0 +1,3081 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Dashboard Admin - Panel Pengelolaan Website Magang Digital</title>
+  <meta name="description" content="Dashboard pengelolaan data testimoni, portofolio, galeri kegiatan, dan artikel website magang digital.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/webp" href="assets/img/favicon-program-magang.webp">
+  <link rel="apple-touch-icon" href="assets/img/favicon-program-magang.webp">
+  <meta name="theme-color" content="#0B1329">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-950: #070c18;
+      --navy-900: #0b1329;
+      --navy-850: #0f172a;
+      --navy-800: #131e3a;
+      --navy-700: #1e293b;
+      --navy-600: #334155;
+      --blue-accent: #2563eb;
+      --blue-accent-hover: #1d4ed8;
+      --blue-light: #38bdf8;
+      --blue-soft: rgba(37, 99, 235, 0.12);
+      --bg-page: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --sidebar-width: 260px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* =========================================================================
+       1. SIDEBAR NAVIGATION (THEME BIRU TUA / NAVY)
+       ========================================================================= */
+    .admin-sidebar {
+      width: var(--sidebar-width);
+      background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1020;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .sidebar-brand {
+      padding: 22px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .sidebar-brand img {
+      max-height: 34px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .sidebar-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .sidebar-brand-sub {
+      font-size: 11px;
+      color: var(--blue-light);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-menu {
+      padding: 16px 12px;
+      list-style: none;
+      margin: 0;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .menu-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 12px 14px 6px;
+    }
+
+    .menu-item {
+      margin-bottom: 4px;
+    }
+
+    .menu-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .menu-link i {
+      font-size: 17px;
+      color: #94a3b8;
+      transition: color 0.2s ease;
+    }
+
+    .menu-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+    }
+
+    .menu-link:hover i {
+      color: var(--blue-light);
+    }
+
+    .menu-link.active {
+      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .menu-link.active i {
+      color: #ffffff;
+    }
+
+    .menu-badge {
+      margin-left: auto;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 12, 24, 0.5);
+    }
+
+    .user-profile-widget {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      margin-bottom: 12px;
+    }
+
+    .user-avatar-sm {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue-accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .user-info-text {
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    .user-info-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .user-info-role {
+      font-size: 11px;
+      color: var(--blue-light);
+    }
+
+    /* Tombol Logout Sidebar */
+    .btn-logout-sidebar {
+      width: 100%;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-logout-sidebar:hover {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    /* =========================================================================
+       2. MAIN CONTENT AREA
+       ========================================================================= */
+    .admin-main {
+      margin-left: var(--sidebar-width);
+      flex-grow: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - var(--sidebar-width));
+    }
+
+    /* Top Navbar */
+    .admin-header {
+      height: 68px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 1010;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-toggle-sidebar {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--navy-700);
+      cursor: pointer;
+      display: none;
+    }
+
+    .header-page-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin: 0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-view-site {
+      background: #f1f5f9;
+      color: var(--navy-800);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-view-site:hover {
+      background: #e2e8f0;
+      color: var(--blue-accent);
+    }
+
+    .btn-logout-header {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-logout-header:hover {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+    }
+
+    /* Content Body */
+    .admin-content {
+      padding: 28px;
+      flex-grow: 1;
+    }
+
+    /* Tab Panes */
+    .tab-content-panel {
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .tab-content-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stat Cards (Overview) */
+    .stat-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      padding: 22px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.07);
+      border-color: #cbd5e1;
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--blue-accent);
+    }
+
+    .stat-card.stat-navy::after { background: var(--navy-900); }
+    .stat-card.stat-blue::after { background: var(--blue-accent); }
+    .stat-card.stat-cyan::after { background: #0284c7; }
+    .stat-card.stat-indigo::after { background: #4f46e5; }
+
+    .stat-card-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .stat-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .stat-card-val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin: 0;
+    }
+
+    .stat-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      color: var(--blue-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    /* Content Data Card */
+    .data-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .data-card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .data-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .data-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 2px 0 0 0;
+    }
+
+    .data-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-add-primary {
+      background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-add-primary:hover {
+      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+      color: #ffffff;
+    }
+
+    /* Table Styles */
+    .table-responsive-custom {
+      overflow-x: auto;
+    }
+
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      font-size: 13.5px;
+    }
+
+    .table-custom th {
+      background: #f8fafc;
+      color: var(--navy-900);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .table-custom td {
+      padding: 14px 20px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+      color: #334155;
+    }
+
+    .table-custom tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    .table-img-thumb {
+      width: 60px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: #e2e8f0;
+    }
+
+    .badge-online {
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-offline {
+      background: #f1f5f9;
+      color: #64748b;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .btn-action {
+      background: none;
+      border: 1px solid var(--border-color);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-right: 4px;
+    }
+
+    .btn-action:hover {
+      background: #f1f5f9;
+      color: var(--navy-900);
+    }
+
+    .btn-action-edit:hover {
+      color: var(--blue-accent);
+      border-color: var(--blue-accent);
+      background: var(--blue-soft);
+    }
+
+    .btn-action-delete:hover {
+      color: #dc2626;
+      border-color: #dc2626;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    /* Modal Form Styling */
+    .modal-content {
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header-navy {
+      background: var(--navy-900);
+      color: #ffffff;
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-header-navy .modal-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .modal-header-navy .btn-close {
+      filter: invert(1);
+    }
+
+    .modal-body {
+      padding: 24px;
+      background: #ffffff;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Search and Filter Bar */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search-input-group {
+      position: relative;
+      min-width: 220px;
+    }
+
+    .search-input-group input {
+      padding-left: 34px;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+
+    .search-input-group i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+
+    /* Toast Notification */
+    .toast-container-custom {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1080;
+    }
+
+    /* Responsive */
+    @media (max-width: 991.98px) {
+      .admin-sidebar {
+        transform: translateX(-100%);
+      }
+      .admin-sidebar.show {
+        transform: translateX(0);
+      }
+      .admin-main {
+        margin-left: 0;
+        width: 100%;
+      }
+      .btn-toggle-sidebar {
+        display: block;
+      }
+    }
+  
+    /* =========================================================================
+       MICROSOFT WORD-STYLE RICH TEXT EDITOR
+       ========================================================================= */
+    .word-editor-wrapper {
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      background: #f1f5f9;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Word Ribbon Toolbar */
+    .word-toolbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toolbar-group {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 6px;
+      border-right: 1px solid #e2e8f0;
+    }
+
+    .toolbar-group:last-child {
+      border-right: none;
+    }
+
+    .btn-word-tool {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #334155;
+      font-size: 13.5px;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      min-width: 32px;
+      height: 32px;
+    }
+
+    .btn-word-tool:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    .btn-word-tool:active, .btn-word-tool.active {
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-color: #93c5fd;
+    }
+
+    .btn-word-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 6px;
+    }
+
+    .btn-word-badge:hover {
+      background: #ffffff;
+      border-color: #3b82f6;
+      color: #1d4ed8;
+      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.15);
+    }
+
+    .word-format-select {
+      height: 32px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-color: #cbd5e1;
+      border-radius: 6px;
+      color: #1e293b;
+      min-width: 170px;
+    }
+
+    /* Word Canvas (Kertas Lembar Kerja) */
+    .word-canvas-wrapper {
+      padding: 24px 16px;
+      background: #e2e8f0;
+      overflow-y: auto;
+      max-height: 480px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .word-canvas {
+      width: 100%;
+      max-width: 820px;
+      min-height: 380px;
+      background: #ffffff;
+      padding: 36px 42px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      outline: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #334155;
+    }
+
+    .word-canvas:focus {
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3), 0 6px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .word-canvas h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #6b1026;
+      margin-top: 28px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+      border-bottom: 2px solid #f1eff0;
+      padding-bottom: 8px;
+    }
+
+    .word-canvas h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-top: 22px;
+      margin-bottom: 10px;
+    }
+
+    .word-canvas p {
+      margin-bottom: 16px;
+    }
+
+    .word-canvas .baca-juga-card {
+      background: #fdf8f9;
+      border-left: 4px solid #6b1026;
+      padding: 14px 18px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .word-canvas .baca-juga-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6b1026;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .word-canvas .baca-juga-link {
+      font-weight: 600;
+      color: #1f2937;
+      text-decoration: underline;
+    }
+
+    .word-canvas .faq-item-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .word-canvas .kesimpulan-box {
+      background: linear-gradient(135deg, rgba(107, 16, 38, 0.04) 0%, rgba(255, 255, 255, 0.8) 100%);
+      border: 1px solid rgba(107, 16, 38, 0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    /* Word Status Bar */
+    .word-statusbar {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 8px 16px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #64748b;
+    }
+
+    /* Preview Modal Blog Styling */
+    .modal-blog-preview-body {
+      background: #f8fafc;
+      padding: 0;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .blog-preview-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px 32px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.06);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================================
+       1. SIDEBAR (THEME BIRU TUA)
+       ========================================================================= -->
+  <aside id="sidebar" class="admin-sidebar">
+    <a href="dashboard.html" class="sidebar-brand">
+      <img src="assets/img/logo-program-magang.webp" alt="Logo Magang">
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-title">Admin Panel</span>
+        <span class="sidebar-brand-sub">Go Magang Digital</span>
+      </div>
+    </a>
+
+    <ul class="sidebar-menu">
+      <li class="menu-header">Menu Utama</li>
+      <li class="menu-item">
+        <a class="menu-link active" onclick="switchTab('overview')">
+          <i class="bi bi-grid-1x2-fill"></i>
+          <span>Ringkasan</span>
+        </a>
+      </li>
+
+      <li class="menu-header">Kelola Konten</li>
+      <li class="menu-item">
+        <a class="menu-link" onclick="switchTab('testimoni')">
+          <i class="bi bi-chat-square-quote-fill"></i>
+          <span>Testimoni</span>
+          <span id="badgeTestimoni" class="menu-badge">3</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" onclick="switchTab('portofolio')">
+          <i class="bi bi-briefcase-fill"></i>
+          <span>Portofolio</span>
+          <span id="badgePortofolio" class="menu-badge">6</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" onclick="switchTab('galeri')">
+          <i class="bi bi-images"></i>
+          <span>Galeri Kegiatan</span>
+          <span id="badgeGaleri" class="menu-badge">6</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" onclick="switchTab('artikel')">
+          <i class="bi bi-newspaper"></i>
+          <span>Artikel Blog</span>
+          <span id="badgeArtikel" class="menu-badge">3</span>
+        </a>
+      </li>
+
+      <li class="menu-header">Database &amp; Aksi</li>
+      <li class="menu-item">
+        <a href="javascript:void(0)" onclick="exportCurrentDataToSQL()" class="menu-link" style="color: #4ade80;">
+          <i class="bi bi-cloud-arrow-down-fill text-success"></i>
+          <span>Unduh SQL Data Terbaru</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="isi_database_otomatis.php" target="_blank" class="menu-link" style="color: #38bdf8;">
+          <i class="bi bi-database-fill-up text-info"></i>
+          <span>Sinkronkan ke MySQL</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" onclick="resetToDefaultData()">
+          <i class="bi bi-arrow-counterclockwise"></i>
+          <span>Reset Data Default</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="index.html" target="_blank" class="menu-link">
+          <i class="bi bi-box-arrow-up-right"></i>
+          <span>Lihat Website</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="user-profile-widget">
+        <div class="user-avatar-sm" id="sidebarAvatar">FR</div>
+        <div class="user-info-text">
+          <div class="user-info-name" id="sidebarUserName">Fachry Rendy P</div>
+          <div class="user-info-role" id="sidebarUserRole">Super Admin</div>
+        </div>
+      </div>
+      <!-- Tombol Logout Sidebar: memicu popup peringatan konfirmasi -->
+      <button type="button" class="btn-logout-sidebar" onclick="triggerLogoutModal()">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Logout Admin</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT
+       ========================================================================= -->
+  <main class="admin-main">
+
+    <!-- Top Navbar Header -->
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="btn-toggle-sidebar" onclick="toggleSidebar()" aria-label="Toggle Navigation">
+          <i class="bi bi-list"></i>
+        </button>
+        <h1 class="header-page-title" id="pageTitle">Ringkasan Sistem</h1>
+      </div>
+
+      <div class="header-right">
+        <!-- Badge Status Koneksi Database MySQL -->
+        <div id="dbStatusBadge" class="d-none d-md-flex align-items-center gap-2 small px-3 py-1 rounded-pill bg-light border text-muted">
+          <span class="spinner-grow spinner-grow-sm text-primary" role="status"></span>
+          <span>Memeriksa Database...</span>
+        </div>
+        <a href="index.html" target="_blank" class="btn-view-site">
+          <i class="bi bi-globe"></i>
+          <span class="d-none d-sm-inline">Buka Website</span>
+        </a>
+        <!-- Tombol Logout Header: memicu popup peringatan konfirmasi -->
+        <button type="button" class="btn-logout-header" onclick="triggerLogoutModal()">
+          <i class="bi bi-box-arrow-right"></i>
+          <span class="d-none d-sm-inline">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content Body -->
+    <div class="admin-content">
+
+      <!-- =====================================================================
+           TAB 1: OVERVIEW (RINGKASAN)
+           ===================================================================== -->
+      <section id="tab-overview" class="tab-content-panel active">
+        <!-- Alert Koneksi Database MySQL Realtime -->
+        <div id="dbSyncAlert" class="mb-4 d-none">
+          <div class="alert alert-warning border-warning d-flex flex-wrap align-items-center justify-content-between p-3 rounded-3 shadow-sm">
+            <div class="d-flex align-items-center gap-3">
+              <i class="bi bi-exclamation-circle-fill text-warning fs-3"></i>
+              <div>
+                <strong class="text-dark d-block">Tabel Database MySQL di phpMyAdmin Masih Kosong!</strong>
+                <span class="small text-muted">Tabel <code>testimoni</code>, <code>portofolio</code>, <code>galeri</code>, dan <code>artikel</code> di database <code>db_magang_digital</code> belum terisi data.</span>
+              </div>
+            </div>
+            <a href="isi_database_otomatis.php" target="_blank" class="btn btn-warning btn-sm fw-bold px-3 py-2 mt-2 mt-md-0" onclick="setTimeout(initStorage, 2500)">
+              <i class="bi bi-database-fill-up me-1"></i> Klik untuk Isi Semua Data ke MySQL Sekarang
+            </a>
+          </div>
+        </div>
+
+        <!-- 4 Stat Cards -->
+        <div class="row g-3 mb-4">
+          <div class="col-xl-3 col-sm-6">
+            <div class="stat-card stat-navy" onclick="switchTab('testimoni')" style="cursor: pointer;">
+              <div class="stat-card-inner">
+                <div>
+                  <div class="stat-card-title">Total Testimoni</div>
+                  <h3 class="stat-card-val" id="statTestimoni">3</h3>
+                  <small class="text-muted"><i class="bi bi-arrow-right-short"></i> Nambah kolom geser</small>
+                </div>
+                <div class="stat-card-icon" style="background: rgba(15, 23, 42, 0.08); color: var(--navy-900);">
+                  <i class="bi bi-chat-square-quote-fill"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6">
+            <div class="stat-card stat-blue" onclick="switchTab('portofolio')" style="cursor: pointer;">
+              <div class="stat-card-inner">
+                <div>
+                  <div class="stat-card-title">Total Portofolio</div>
+                  <h3 class="stat-card-val" id="statPortofolio">6</h3>
+                  <small class="text-muted"><i class="bi bi-check-circle text-success me-1"></i>Status Online</small>
+                </div>
+                <div class="stat-card-icon">
+                  <i class="bi bi-briefcase-fill"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6">
+            <div class="stat-card stat-cyan" onclick="switchTab('galeri')" style="cursor: pointer;">
+              <div class="stat-card-inner">
+                <div>
+                  <div class="stat-card-title">Total Galeri</div>
+                  <h3 class="stat-card-val" id="statGaleri">6</h3>
+                  <small class="text-muted"><i class="bi bi-image text-info me-1"></i>Foto Kegiatan</small>
+                </div>
+                <div class="stat-card-icon" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">
+                  <i class="bi bi-images"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6">
+            <div class="stat-card stat-indigo" onclick="switchTab('artikel')" style="cursor: pointer;">
+              <div class="stat-card-inner">
+                <div>
+                  <div class="stat-card-title">Artikel Blog</div>
+                  <h3 class="stat-card-val" id="statArtikel">3</h3>
+                  <small class="text-muted"><i class="bi bi-file-earmark-text text-primary me-1"></i>Lengkap 2 Gambar</small>
+                </div>
+                <div class="stat-card-icon" style="background: rgba(79, 70, 229, 0.1); color: #4f46e5;">
+                  <i class="bi bi-newspaper"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Information & Quick Actions -->
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="data-card">
+              <div class="data-card-header">
+                <div>
+                  <h2 class="data-card-title"><i class="bi bi-shield-check text-primary"></i> Status Sinkronisasi Database MySQL</h2>
+                  <p class="data-card-desc">Terkoneksi dengan skema <code>db_magang_digital</code> phpMyAdmin</p>
+                </div>
+                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 py-2 px-3">
+                  <i class="bi bi-check2-circle me-1"></i> Aktif &amp; Terverifikasi
+                </span>
+              </div>
+              <div class="p-4">
+                <div class="alert alert-primary bg-primary bg-opacity-10 border-0 text-dark small mb-3">
+                  <i class="bi bi-info-circle-fill text-primary me-2"></i>
+                  File database lengkap tersedia di root direktori proyek: <strong><code>database.sql</code></strong>. Anda dapat mengimpor atau mengekspor kapan saja ke phpMyAdmin MySQL.
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-sm table-bordered align-middle mb-0 small">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Nama Tabel</th>
+                        <th>Fungsi Halaman</th>
+                        <th>Status Isi</th>
+                        <th>Aksi Kelola</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>testimoni</code></td>
+                        <td>Section Testimoni di <code>index.html</code> (Nambah Kolom Kanan-Kiri)</td>
+                        <td><span class="badge bg-primary">3 Data</span></td>
+                        <td><button class="btn btn-xs btn-outline-primary py-0 px-2" onclick="switchTab('testimoni')">Buka Kelola</button></td>
+                      </tr>
+                      <tr>
+                        <td><code>portofolio</code></td>
+                        <td>Section di <code>index.html</code> &amp; Halaman <code>portfolio.html</code></td>
+                        <td><span class="badge bg-primary">6 Data</span></td>
+                        <td><button class="btn btn-xs btn-outline-primary py-0 px-2" onclick="switchTab('portofolio')">Buka Kelola</button></td>
+                      </tr>
+                      <tr>
+                        <td><code>galeri</code></td>
+                        <td>Overlay <code>index.html</code> &amp; Card <code>galeri.html</code></td>
+                        <td><span class="badge bg-primary">6 Data</span></td>
+                        <td><button class="btn btn-xs btn-outline-primary py-0 px-2" onclick="switchTab('galeri')">Buka Kelola</button></td>
+                      </tr>
+                      <tr>
+                        <td><code>artikel</code></td>
+                        <td>Card <code>blog.html</code> &amp; Isi Artikel Folder <code>blog/</code></td>
+                        <td><span class="badge bg-primary">3 Data</span></td>
+                        <td><button class="btn btn-xs btn-outline-primary py-0 px-2" onclick="switchTab('artikel')">Buka Kelola</button></td>
+                      </tr>
+                      <tr>
+                        <td><code>admin</code></td>
+                        <td>Login Autentikasi Pengelola (Username: <code>admin</code>)</td>
+                        <td><span class="badge bg-success">1 Akun</span></td>
+                        <td><span class="text-muted">Terkunci Superadmin</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="data-card">
+              <div class="data-card-header">
+                <h3 class="data-card-title"><i class="bi bi-lightning-charge-fill text-warning"></i> Pintasan Cepat</h3>
+              </div>
+              <div class="p-3 d-flex flex-column gap-2">
+                <button class="btn btn-outline-dark text-start d-flex align-items-center justify-content-between p-2" onclick="openAddModal('testimoni')">
+                  <span><i class="bi bi-plus-circle text-primary me-2"></i> Tambah Testimoni Baru</span>
+                  <i class="bi bi-chevron-right small text-muted"></i>
+                </button>
+                <button class="btn btn-outline-dark text-start d-flex align-items-center justify-content-between p-2" onclick="openAddModal('portofolio')">
+                  <span><i class="bi bi-plus-circle text-primary me-2"></i> Tambah Portofolio Proyek</span>
+                  <i class="bi bi-chevron-right small text-muted"></i>
+                </button>
+                <button class="btn btn-outline-dark text-start d-flex align-items-center justify-content-between p-2" onclick="openAddModal('galeri')">
+                  <span><i class="bi bi-plus-circle text-primary me-2"></i> Tambah Foto Galeri</span>
+                  <i class="bi bi-chevron-right small text-muted"></i>
+                </button>
+                <button class="btn btn-outline-dark text-start d-flex align-items-center justify-content-between p-2" onclick="openAddModal('artikel')">
+                  <span><i class="bi bi-plus-circle text-primary me-2"></i> Tulis Artikel Baru</span>
+                  <i class="bi bi-chevron-right small text-muted"></i>
+                </button>
+                <hr class="my-2">
+                <!-- Tombol Logout pintasan -->
+                <button class="btn btn-danger text-start d-flex align-items-center justify-content-between p-2" onclick="triggerLogoutModal()">
+                  <span><i class="bi bi-box-arrow-right me-2"></i> Keluar / Logout Sesi</span>
+                  <i class="bi bi-arrow-right small"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           TAB 2: KELOLA TESTIMONI
+           ===================================================================== -->
+      <section id="tab-testimoni" class="tab-content-panel">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div>
+              <h2 class="data-card-title"><i class="bi bi-chat-square-quote-fill text-primary"></i> Data Testimoni Alumni Magang</h2>
+              <p class="data-card-desc">Ditampilkan pada halaman beranda dengan susunan scroll horizontal (nambah kolom bukan nambah baris).</p>
+            </div>
+            <div class="data-card-actions">
+              <button class="btn-add-primary" onclick="openAddModal('testimoni')">
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah Testimoni</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive-custom">
+            <table class="table-custom">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">No</th>
+                  <th>Nama Lengkap</th>
+                  <th>Asal Sekolah / Kampus</th>
+                  <th>Jurusan</th>
+                  <th>Kutipan Testimoni</th>
+                  <th style="width: 100px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyTestimoni">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           TAB 3: KELOLA PORTOFOLIO
+           ===================================================================== -->
+      <section id="tab-portofolio" class="tab-content-panel">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div>
+              <h2 class="data-card-title"><i class="bi bi-briefcase-fill text-primary"></i> Data Portofolio Hasil Praktik</h2>
+              <p class="data-card-desc">Ditampilkan di section beranda &amp; halaman portofolio dengan badge kategori, tim jurusan, dan status online.</p>
+            </div>
+            <div class="data-card-actions">
+              <button class="btn-add-primary" onclick="openAddModal('portofolio')">
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah Portofolio</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive-custom">
+            <table class="table-custom">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">No</th>
+                  <th>Preview</th>
+                  <th>Judul Portofolio</th>
+                  <th>Kategori</th>
+                  <th>Tim Jurusan / Sekolah</th>
+                  <th>Status &amp; Link</th>
+                  <th style="width: 100px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyPortofolio">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           TAB 4: KELOLA GALERI
+           ===================================================================== -->
+      <section id="tab-galeri" class="tab-content-panel">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div>
+              <h2 class="data-card-title"><i class="bi bi-images text-primary"></i> Data Galeri Dokumentasi Kegiatan</h2>
+              <p class="data-card-desc">Menampung foto kegiatan dengan deskripsi lengkap (halaman galeri) dan deskripsi singkat (overlay beranda).</p>
+            </div>
+            <div class="data-card-actions">
+              <button class="btn-add-primary" onclick="openAddModal('galeri')">
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah Galeri</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive-custom">
+            <table class="table-custom">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">No</th>
+                  <th>Foto</th>
+                  <th>Nama Kegiatan</th>
+                  <th>Kategori</th>
+                  <th>Deskripsi Lengkap (Galeri)</th>
+                  <th>Deskripsi Singkat (Beranda)</th>
+                  <th style="width: 100px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyGaleri">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           TAB 5: KELOLA ARTIKEL
+           ===================================================================== -->
+      <section id="tab-artikel" class="tab-content-panel">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div>
+              <h2 class="data-card-title"><i class="bi bi-newspaper text-primary"></i> Data Artikel Blog &amp; Edukasi</h2>
+              <p class="data-card-desc">Artikel terstruktur dengan 2 gambar (utama &amp; isi), label terkait, FAQ, dan data penulis.</p>
+            </div>
+            <div class="data-card-actions">
+              <button class="btn-add-primary" onclick="openAddModal('artikel')">
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah Artikel</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive-custom">
+            <table class="table-custom">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">No</th>
+                  <th>Foto Utama</th>
+                  <th>Judul Artikel</th>
+                  <th>Label Artikel</th>
+                  <th>Penulis</th>
+                  <th>Tanggal</th>
+                  <th style="width: 100px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyArtikel">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       3. MODAL POPUP LOGOUT (SESUAI INSTRUKSI SPESIFIK USER)
+       Peringatan: "yakin mau logout?" dengan tombol "Batal" dan "Logout"
+       ========================================================================= -->
+  <div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-danger text-white border-0 py-3">
+          <h5 class="modal-title fs-6 fw-bold" id="modalLogoutLabel">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Konfirmasi Logout
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center py-4">
+          <i class="bi bi-question-circle text-danger fs-1 mb-2 d-block"></i>
+          <!-- Pesan teks sesuai perintah user -->
+          <h6 class="fw-bold text-dark mb-1">Yakin mau logout?</h6>
+          <p class="small text-muted mb-0">Sesi administrasi Anda akan diakhiri dan dialihkan ke halaman login.</p>
+        </div>
+        <div class="modal-footer justify-content-center border-0 bg-light py-2">
+          <!-- Tombol Batal -->
+          <button type="button" class="btn btn-secondary btn-sm px-4 fw-semibold" data-bs-dismiss="modal">
+            Batal
+          </button>
+          <!-- Tombol Logout -->
+          <button type="button" class="btn btn-danger btn-sm px-4 fw-semibold" onclick="executeLogout()">
+            <i class="bi bi-box-arrow-right me-1"></i>Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. MODAL FORM: TESTIMONI (TAMBAH / EDIT)
+       ========================================================================= -->
+  <div class="modal fade" id="modalTestimoni" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+        <div class="modal-header modal-header-navy">
+          <h5 class="modal-title" id="titleModalTestimoni">Tambah Testimoni Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="formTestimoni" onsubmit="saveTestimoni(event)">
+          <div class="modal-body">
+            <input type="hidden" id="testimoniId">
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Nama Lengkap Siswa / Mahasiswa *</label>
+              <input type="text" id="testimoniNama" class="form-control form-control-sm" placeholder="Contoh: Rizky Pratama" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Asal Sekolah / Kampus *</label>
+              <input type="text" id="testimoniAsal" class="form-control form-control-sm" placeholder="Contoh: SMK Negeri 1 Surabaya" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Jurusan *</label>
+              <input type="text" id="testimoniJurusan" class="form-control form-control-sm" placeholder="Contoh: SMK Jurusan RPL" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Isi Testimoni / Kesan Magang *</label>
+              <textarea id="testimoniIsi" rows="4" class="form-control form-control-sm" placeholder="Tuliskan pengalaman nyata selama mengikuti program magang..." required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary btn-sm px-3 fw-bold">Simpan Testimoni</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. MODAL FORM: PORTOFOLIO (TAMBAH / EDIT)
+       ========================================================================= -->
+  <div class="modal fade" id="modalPortofolio" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header modal-header-navy">
+          <h5 class="modal-title" id="titleModalPortofolio">Tambah Portofolio Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="formPortofolio" onsubmit="savePortofolio(event)">
+          <div class="modal-body">
+            <input type="hidden" id="portofolioId">
+            <div class="row g-3">
+              <div class="col-md-7">
+                <label class="form-label small fw-bold">Judul Portofolio Proyek *</label>
+                <input type="text" id="portofolioJudul" class="form-control form-control-sm" placeholder="Contoh: Studio Arsitektur Modern" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label small fw-bold">Kategori Proyek *</label>
+                <select id="portofolioKategori" class="form-select form-select-sm" required>
+                  <option value="Website Perusahaan">Website Perusahaan</option>
+                  <option value="Landing Page Penawaran">Landing Page Penawaran</option>
+                  <option value="Desain UI/UX & Media">Desain UI/UX &amp; Media</option>
+                  <option value="Infrastruktur & Server">Infrastruktur &amp; Server</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Dari Tim Jurusan / Sekolah / Kampus *</label>
+                <input type="text" id="portofolioTim" class="form-control form-control-sm" placeholder="Contoh: Tim RPL & DKV" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Path / Link Gambar *</label>
+                <input type="text" id="portofolioGambar" class="form-control form-control-sm" placeholder="assets/img/Portofolio/portofolio-1.webp" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold">Deskripsi Portofolio *</label>
+                <textarea id="portofolioDeskripsi" rows="3" class="form-control form-control-sm" placeholder="Jelaskan ruang lingkup proyek dan capaian yang dicapai peserta..." required></textarea>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Apakah Portofolio Sudah Online? *</label>
+                <select id="portofolioIsOnline" class="form-select form-select-sm" onchange="toggleLinkHasil()">
+                  <option value="1">Sudah Online</option>
+                  <option value="0">Belum Online (Lokal)</option>
+                </select>
+              </div>
+              <div class="col-md-6" id="wrapperLinkHasil">
+                <label class="form-label small fw-bold">Link Hasil Proyek Online (URL)</label>
+                <input type="url" id="portofolioLink" class="form-control form-control-sm" placeholder="https://gomagangdigital.vercel.app/portfolio.html">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary btn-sm px-3 fw-bold">Simpan Portofolio</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       6. MODAL FORM: GALERI (TAMBAH / EDIT)
+       ========================================================================= -->
+  <div class="modal fade" id="modalGaleri" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header modal-header-navy">
+          <h5 class="modal-title" id="titleModalGaleri">Tambah Galeri Kegiatan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="formGaleri" onsubmit="saveGaleri(event)">
+          <div class="modal-body">
+            <input type="hidden" id="galeriId">
+            <div class="row g-3">
+              <div class="col-md-7">
+                <label class="form-label small fw-bold">Nama Kegiatan Dokumentasi *</label>
+                <input type="text" id="galeriNama" class="form-control form-control-sm" placeholder="Contoh: Sesi Pengenalan Alur Kerja Tim" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label small fw-bold">Kategori Kegiatan *</label>
+                <select id="galeriKategori" class="form-select form-select-sm" required>
+                  <option value="Bimbingan & Mentoring">Bimbingan &amp; Mentoring</option>
+                  <option value="Praktik Koding">Praktik Koding</option>
+                  <option value="Desain UI & Aset">Desain UI &amp; Aset</option>
+                  <option value="Proyek Nyata">Proyek Nyata</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold">Path / URL Foto *</label>
+                <input type="text" id="galeriGambar" class="form-control form-control-sm" placeholder="assets/img/Galeri/galeri-1.webp" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold">Deskripsi Lengkap (Tampil di Halaman galeri.html) *</label>
+                <textarea id="galeriDeskripsi" rows="2" class="form-control form-control-sm" placeholder="Pembagian peran antara desainer, programmer, dan digital marketer..." required></textarea>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold">Deskripsi Singkat (Tampil di Overlay index.html) *</label>
+                <input type="text" id="galeriDeskripsiSingkat" class="form-control form-control-sm" placeholder="Perumusan struktur informasi & sitemap" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary btn-sm px-3 fw-bold">Simpan Galeri</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       7. MODAL FORM: ARTIKEL BLOG (TAMBAH / EDIT)
+       ========================================================================= -->
+  <div class="modal fade" id="modalArtikel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header modal-header-navy">
+          <h5 class="modal-title" id="titleModalArtikel">Tulis Artikel Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="formArtikel" onsubmit="saveArtikel(event)">
+          <div class="modal-body">
+            <input type="hidden" id="artikelId">
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label class="form-label small fw-bold">Judul Artikel (H1) *</label>
+                <input type="text" id="artikelJudul" class="form-control form-control-sm" placeholder="Judul artikel informatif dan ramah SEO..." required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-bold">Label Artikel (Untuk Mengaitkan Artikel Terkait) *</label>
+                <input type="text" id="artikelLabel" class="form-control form-control-sm" placeholder="Contoh: Program Magang, Panduan Jurusan, Infrastruktur" required>
+              </div>
+
+              <!-- Gambar Pertama (Di Bawah Judul) -->
+              <div class="col-md-6 border-end pe-md-3">
+                <h6 class="fw-bold text-primary small mb-2"><i class="bi bi-image me-1"></i> Gambar Pertama (Di Bawah Judul) *</h6>
+                <div class="mb-2">
+                  <label class="form-label small text-muted mb-1">Path Gambar Pertama (1200x675)</label>
+                  <input type="text" id="artikelGambar1" class="form-control form-control-sm" placeholder="assets/img/blog/artikel-1-utama.webp" required>
+                </div>
+                <div class="mb-2">
+                  <label class="form-label small text-muted mb-1">Alt Teks Gambar Pertama</label>
+                  <input type="text" id="artikelAlt1" class="form-control form-control-sm" placeholder="Deskripsi gambar untuk aksesibilitas dan SEO" required>
+                </div>
+                <div>
+                  <label class="form-label small text-muted mb-1">Caption / Keterangan Gambar Pertama</label>
+                  <textarea id="artikelCaption1" rows="2" class="form-control form-control-sm" placeholder="Keterangan foto di bawah judul..." required></textarea>
+                </div>
+              </div>
+
+              <!-- Gambar Kedua (Di Isi Artikel) -->
+              <div class="col-md-6 ps-md-3">
+                <h6 class="fw-bold text-primary small mb-2"><i class="bi bi-image-fill me-1"></i> Gambar Kedua (Di Dalam Isi Artikel) *</h6>
+                <div class="mb-2">
+                  <label class="form-label small text-muted mb-1">Path Gambar Kedua (1200x675)</label>
+                  <input type="text" id="artikelGambar2" class="form-control form-control-sm" placeholder="assets/img/blog/artikel-1-pendukung.webp" required>
+                </div>
+                <div class="mb-2">
+                  <label class="form-label small text-muted mb-1">Alt Teks Gambar Kedua</label>
+                  <input type="text" id="artikelAlt2" class="form-control form-control-sm" placeholder="Deskripsi foto pendukung artikel" required>
+                </div>
+                <div>
+                  <label class="form-label small text-muted mb-1">Caption / Keterangan Gambar Kedua</label>
+                  <textarea id="artikelCaption2" rows="2" class="form-control form-control-sm" placeholder="Keterangan foto pendukung di isi artikel..." required></textarea>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label small fw-bold">Ringkasan Artikel (Untuk Kartu Blog) *</label>
+                <textarea id="artikelRingkasan" rows="2" class="form-control form-control-sm" placeholder="Deskripsi singkat yang memikat di kartu blog (maksimal 200 karakter)..." required></textarea>
+              </div>
+
+              <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <label class="form-label small fw-bold mb-0">
+                    <i class="bi bi-file-earmark-word-fill text-primary me-1"></i> Isi Lengkap Artikel (Editor Seperti Microsoft Word) *
+                  </label>
+                  <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Gunakan toolbar untuk format H2, H3, Baca Juga, dan FAQ</small>
+                </div>
+
+                <!-- Microsoft Word-Style Editor -->
+                <div class="word-editor-wrapper">
+                  <!-- Word Ribbon Toolbar -->
+                  <div class="word-toolbar">
+                    <!-- Undo / Redo -->
+                    <div class="toolbar-group">
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('undo')" title="Undo (Ctrl+Z)"><i class="bi bi-arrow-counterclockwise"></i></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('redo')" title="Redo (Ctrl+Y)"><i class="bi bi-arrow-clockwise"></i></button>
+                    </div>
+
+                    <!-- Heading Selector -->
+                    <div class="toolbar-group">
+                      <select class="form-select form-select-sm word-format-select" onchange="formatHeading(this.value)">
+                        <option value="p">Teks Paragraf Normal</option>
+                        <option value="h2">Heading 2 (Subjudul Utama)</option>
+                        <option value="h3">Heading 3 (Subjudul Bagian)</option>
+                      </select>
+                    </div>
+
+                    <!-- Font Formatting: B I U S -->
+                    <div class="toolbar-group">
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('bold')" title="Tebal (Bold / Ctrl+B)"><strong>B</strong></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('italic')" title="Miring (Italic / Ctrl+I)"><em>I</em></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('underline')" title="Garis Bawah (Underline / Ctrl+U)"><u>U</u></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('strikeThrough')" title="Coret (Strikethrough)"><s>S</s></button>
+                    </div>
+
+                    <!-- Alignment -->
+                    <div class="toolbar-group">
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('justifyLeft')" title="Rata Kiri"><i class="bi bi-text-left"></i></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('justifyCenter')" title="Rata Tengah"><i class="bi bi-text-center"></i></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('justifyRight')" title="Rata Kanan"><i class="bi bi-text-right"></i></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('justifyFull')" title="Rata Kanan-Kiri (Justify)"><i class="bi bi-justify"></i></button>
+                    </div>
+
+                    <!-- Lists -->
+                    <div class="toolbar-group">
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('insertUnorderedList')" title="Daftar Poin (Bullet List)"><i class="bi bi-list-ul"></i></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('insertOrderedList')" title="Daftar Nomor (Numbered List)"><i class="bi bi-list-ol"></i></button>
+                    </div>
+
+                    <!-- Blog Specific Fast Inserts -->
+                    <div class="toolbar-group">
+                      <button type="button" class="btn-word-tool btn-word-badge" onclick="insertBacaJugaTemplate()" title="Sisipkan Kotak Baca Juga">
+                        <i class="bi bi-bookmark-check text-primary me-1"></i>+ Baca Juga
+                      </button>
+                      <button type="button" class="btn-word-tool btn-word-badge" onclick="insertFaqTemplate()" title="Sisipkan Format FAQ Teks">
+                        <i class="bi bi-patch-question text-info me-1"></i>+ FAQ
+                      </button>
+                      <button type="button" class="btn-word-tool btn-word-badge" onclick="insertKesimpulanTemplate()" title="Sisipkan Box Kesimpulan">
+                        <i class="bi bi-check2-square text-success me-1"></i>+ Kesimpulan
+                      </button>
+                    </div>
+
+                    <!-- Utilities -->
+                    <div class="toolbar-group ms-auto">
+                      <button type="button" class="btn-word-tool" onclick="insertWordLink()" title="Sisipkan Tautan Web"><i class="bi bi-link-45deg"></i></button>
+                      <button type="button" class="btn-word-tool" onclick="execWordCmd('removeFormat')" title="Hapus Format"><i class="bi bi-eraser"></i></button>
+                    </div>
+                  </div>
+
+                  <!-- Word Canvas -->
+                  <div class="word-canvas-wrapper">
+                    <div id="wordCanvas" class="word-canvas" contenteditable="true" oninput="updateWordStats()">
+                      <p class="lead">Ketik atau tempelkan isi artikel Anda di sini seperti di lembar kerja Microsoft Word...</p>
+                    </div>
+                  </div>
+
+                  <!-- Word Status Bar -->
+                  <div class="word-statusbar">
+                    <div class="d-flex align-items-center gap-3">
+                      <span><i class="bi bi-file-text me-1"></i> <strong id="wordCountLabel">0</strong> Kata</span>
+                      <span><i class="bi bi-clock me-1"></i> Estimasi Baca: <strong id="readingTimeLabel">1 Menit</strong></span>
+                      <span id="targetWordStatus" class="badge bg-secondary">Target >= 900 kata</span>
+                    </div>
+                    <div class="text-muted small">
+                      <i class="bi bi-check2-circle text-success me-1"></i> Mode Microsoft Word Aktif
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hidden Input for Form Submission -->
+                <textarea id="artikelIsi" class="d-none"></textarea>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Nama Penulis *</label>
+                <input type="text" id="artikelPenulis" class="form-control form-control-sm" value="Fachry Rendy P" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Profil Penulis (Opsional / Tidak Wajib Diisi)</label>
+                <input type="text" id="artikelProfilPenulis" class="form-control form-control-sm" placeholder="Bio singkat penulis (boleh dikosongkan)">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-outline-primary btn-sm fw-semibold" onclick="previewCurrentFormArticle()">
+              <i class="bi bi-eye-fill me-1"></i> Pratinjau Tampilan Halaman Blog
+            </button>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-primary btn-sm px-3 fw-bold">Simpan Artikel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- =========================================================================
+       MODAL PRATINJAU HALAMAN ARTIKEL (OTOMATIS PERSIS SEPERTI DI FOLDER BLOG)
+       ========================================================================= -->
+  <div class="modal fade" id="modalPreviewBlog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white py-2 px-3">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-primary">Pratinjau Otomatis</span>
+            <span class="small text-light">Tampilan Halaman Artikel Sesuai Template Folder <code>blog/</code></span>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal-blog-preview-body" id="previewBlogContainer">
+          <!-- Dynamically populated -->
+        </div>
+        <div class="modal-footer py-2 bg-light">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup Pratinjau</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container toast-container-custom">
+    <div id="actionToast" class="toast align-items-center text-white bg-dark border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i id="toastIcon" class="bi bi-check-circle-fill text-success fs-5"></i>
+          <span id="toastMessage">Operasi berhasil disimpan!</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Dashboard Controller Script -->
+  <script>
+    // =========================================================================
+    // 1. DATA DEFAULT SEED (SINKRON 100% DENGAN database.sql)
+    // =========================================================================
+    const defaultData = {
+      testimoni: [
+        {
+          id: 1,
+          nama: 'Rizky Pratama',
+          asal_sekolah_kampus: 'SMK Negeri 1 Surabaya',
+          jurusan: 'RPL',
+          isi_testimoni: 'Selama magang di sini, saya belajar langsung cara membangun website responsif dengan Bootstrap 5 dan JavaScript dari nol. Bimbingan dari mentor sangat intensif dan membuat saya jauh lebih percaya diri dalam coding.'
+        },
+        {
+          id: 2,
+          nama: 'Siti Nurhaliza',
+          asal_sekolah_kampus: 'SMK Negeri 2 Sidoarjo',
+          jurusan: 'SMK Bisnis Digital',
+          isi_testimoni: 'Materi riset audiens dan copywriting-nya aplikatif sekali. Saya diajarkan bagaimana menulis copy landing page yang memikat dan menerapkan dasar SEO agar halaman web dapat terindeks dengan baik di Google.'
+        },
+        {
+          id: 3,
+          nama: 'Bagas Aditya',
+          asal_sekolah_kampus: 'SMK Bina Informatika',
+          jurusan: 'SMK Jurusan TKJ',
+          isi_testimoni: 'Pengalaman yang sangat berharga bagi siswa TKJ. Saya mempraktikkan langsung setup local web server, konfigurasi domain, DNS, dan pengamanan protokol HTTPS. Benar-benar sesuai dengan standar dunia kerja!'
+        },
+        {
+          id: 4,
+          nama: 'Fachry Rendy',
+          asal_sekolah_kampus: 'SMK Negeri 4 Bojonegoro',
+          jurusan: 'Bisnis Digital',
+          isi_testimoni: 'Magang di sini enak sekali'
+        }
+      ],
+      portofolio: [
+        {
+          id: 1,
+          judul_portofolio: 'Studio Arsitektur Modern',
+          kategori: 'Website Perusahaan',
+          gambar: 'assets/img/Portofolio/portofolio-1.webp',
+          alt_gambar: 'Proyek website profil jasa arsitektur',
+          deskripsi: 'Kolaborasi siswa RPL dan DKV dalam menghasilkan layout minimalis dan performa skor 95+ di Google Lighthouse.',
+          tim_jurusan_sekolah_kampus: 'Tim RPL & DKV',
+          is_online: 1,
+          link_hasil: 'https://gomagangdigital.vercel.app/portfolio.html',
+          status_label: 'Selesai'
+        },
+        {
+          id: 2,
+          judul_portofolio: 'Landing Page Kursus Koding',
+          kategori: 'Landing Page Penawaran',
+          gambar: 'assets/img/Portofolio/portofolio-2.webp',
+          alt_gambar: 'Landing page kursus digital',
+          deskripsi: 'Dirancang oleh peserta Bisnis Digital dan RPL dengan fokus rasio konversi klik tombol konsultasi.',
+          tim_jurusan_sekolah_kampus: 'Tim BDP & RPL',
+          is_online: 1,
+          link_hasil: 'https://gomagangdigital.vercel.app/portfolio.html',
+          status_label: 'Selesai'
+        },
+        {
+          id: 3,
+          judul_portofolio: 'Portal Layanan Publik Desa',
+          kategori: 'Desain UI/UX & Media',
+          gambar: 'assets/img/Portofolio/portofolio-3.webp',
+          alt_gambar: 'Desain UI portal layanan publik',
+          deskripsi: 'Karya siswa DKV dan Informatika dengan pengujian aksesibilitas WCAG AA dan struktur data transparan.',
+          tim_jurusan_sekolah_kampus: 'Tim DKV & IF',
+          is_online: 1,
+          link_hasil: 'https://gomagangdigital.vercel.app/portfolio.html',
+          status_label: 'Selesai'
+        },
+        {
+          id: 4,
+          judul_portofolio: 'Dashboard Monitoring Jaringan',
+          kategori: 'Infrastruktur & Server',
+          gambar: 'assets/img/Portofolio/portofolio-4.webp',
+          alt_gambar: 'Dashboard performa server dan uptime',
+          deskripsi: 'Setup Nginx web server, DNS Cloudflare, dan SSL Let\'s Encrypt dengan skor keamanan A+.',
+          tim_jurusan_sekolah_kampus: 'Tim TKJ & RPL',
+          is_online: 1,
+          link_hasil: 'https://gomagangdigital.vercel.app/portfolio.html',
+          status_label: 'Selesai'
+        },
+        {
+          id: 5,
+          judul_portofolio: 'Toko Online Produk UMKM',
+          kategori: 'Website Perusahaan',
+          gambar: 'assets/img/Portofolio/portofolio-5.webp',
+          alt_gambar: 'Toko online produk UMKM lokal',
+          deskripsi: 'Website katalog responsif dengan integrasi payment gateway sandbox dan checkout cepat WhatsApp.',
+          tim_jurusan_sekolah_kampus: 'Tim RPL & BDP',
+          is_online: 1,
+          link_hasil: 'https://gomagangdigital.vercel.app/portfolio.html',
+          status_label: 'Selesai'
+        },
+        {
+          id: 6,
+          judul_portofolio: 'Desain Identitas Visual Merek',
+          kategori: 'Desain UI/UX & Media',
+          gambar: 'assets/img/Portofolio/portofolio-6.webp',
+          alt_gambar: 'Brand guideline dan palet warna antarmuka web',
+          deskripsi: 'Pembuatan panduan gaya merek, icon set kustom, dan optimasi format WebP hemat kuota.',
+          tim_jurusan_sekolah_kampus: 'Tim DKV',
+          is_online: 1,
+          link_hasil: 'https://gomagangdigital.vercel.app/portfolio.html',
+          status_label: 'Selesai'
+        }
+      ],
+      galeri: [
+        {
+          id: 1,
+          nama: 'Sesi Pengenalan Alur Kerja Tim',
+          kategori: 'Bimbingan & Mentoring',
+          gambar: 'assets/img/Galeri/galeri-1.webp',
+          deskripsi: 'Pembagian peran antara desainer, programmer, dan digital marketer dalam proyek riil.',
+          deskripsi_singkat: 'Perumusan struktur informasi & sitemap'
+        },
+        {
+          id: 2,
+          nama: 'Praktik Koding Bootstrap 5',
+          kategori: 'Praktik Koding',
+          gambar: 'assets/img/Galeri/galeri-2.webp',
+          deskripsi: 'Penyusunan komponen responsif untuk landing page profil bisnis berbasis flexbox dan grid.',
+          deskripsi_singkat: 'Konstruksi komponen web responsif'
+        },
+        {
+          id: 3,
+          nama: 'Eksplorasi Desain Antarmuka',
+          kategori: 'Desain UI & Aset',
+          gambar: 'assets/img/Galeri/galeri-3.webp',
+          deskripsi: 'Perancangan mockup visual, keselarasan warna, dan uji kontras aksesibilitas WCAG AA.',
+          deskripsi_singkat: 'Optimasi format WebP & konsistensi merek'
+        },
+        {
+          id: 4,
+          nama: 'Penyusunan Landing Page Bisnis',
+          kategori: 'Proyek Nyata',
+          gambar: 'assets/img/Galeri/galeri-4.webp',
+          deskripsi: 'Integrasi headline memikat dengan tombol konversi cepat WhatsApp dan copywriting persuasif.',
+          deskripsi_singkat: 'Penyusunan copy berbasis kata kunci'
+        },
+        {
+          id: 5,
+          nama: 'Uji Tampilan Multi-Perangkat',
+          kategori: 'Praktik Koding',
+          gambar: 'assets/img/Galeri/galeri-5.webp',
+          deskripsi: 'Evaluasi tata letak mobile-first dan navigasi ramah sentuhan jempol di berbagai gadget.',
+          deskripsi_singkat: 'Konfigurasi server lokal dan domain'
+        },
+        {
+          id: 6,
+          nama: 'Evaluasi Kode & SEO Bersama Mentor',
+          kategori: 'Bimbingan & Mentoring',
+          gambar: 'assets/img/Galeri/galeri-6.webp',
+          deskripsi: 'Sesi feedback intensif untuk menyempurnakan struktur kode dan performa portofolio peserta.',
+          deskripsi_singkat: 'Pemberian masukan dan arahan pengembangan'
+        }
+      ],
+      artikel: [
+        {
+          id: 1,
+          judul_artikel: 'Mengapa Keterampilan Web & Digital Marketing Sangat Dibutuhkan di Industri Saat Ini?',
+          slug: 'mengapa-keterampilan-web-dan-digital-marketing-dibutuhkan',
+          label_artikel: 'Program Magang',
+          gambar_pertama: 'assets/img/blog/artikel-1-utama.webp',
+          alt_gambar_pertama: 'Kolaborasi pengembang website dan tim digital marketing',
+          caption_gambar_pertama: 'Dokumentasi Praktik: Kolaborasi lintas disiplin antara perancang antarmuka web dan analis pemasaran digital.',
+          gambar_kedua: 'assets/img/blog/artikel-1-pendukung.webp',
+          alt_gambar_kedua: 'Penyusunan tata letak website responsif dan ramah SEO',
+          caption_gambar_kedua: 'Ilustrasi Praktik: Pemetaan tata letak kawat (wireframing) antarmuka website berbasis prinsip SEO On-Page.',
+          ringkasan: 'Kombinasi kemampuan membangun website fungsional dan memasarkannya secara digital membuka peluang karier nyata bagi siswa SMK dan mahasiswa.',
+          isi_artikel: '<p>Perkembangan ekosistem teknologi modern telah mengubah cara dunia usaha, lembaga pendidikan, instansi pemerintah, dan pelaku UMKM berinteraksi dengan masyarakat...</p>',
+          nama_penulis: 'Fachry Rendy P',
+          profil_penulis: 'Praktisi teknologi informasi dan digital marketing dengan pengalaman lebih dari 8 tahun.',
+          tanggal_publish: '2026-11-10'
+        },
+        {
+          id: 2,
+          judul_artikel: 'Perbedaan Fokus Magang Jurusan Informatika dan RPL: Mana yang Sesuai Minatmu?',
+          slug: 'perbedaan-fokus-magang-informatika-dan-rpl',
+          label_artikel: 'Panduan Jurusan',
+          gambar_pertama: 'assets/img/blog/artikel-2-utama.webp',
+          alt_gambar_pertama: 'Diskusi analisis algoritma dan koding antara peserta Informatika dan RPL',
+          caption_gambar_pertama: 'Kolaborasi Teknis: Sesi pemecahan masalah algoritma komputasi dan implementasi struktur kode modular.',
+          gambar_kedua: 'assets/img/blog/artikel-2-pendukung.webp',
+          alt_gambar_kedua: 'Penerapan clean code dan arsitektur modular pada pengembangan website',
+          caption_gambar_kedua: 'Dokumentasi Praktik: Implementasi kerangka kode antarmuka HTML5 semantik dan Bootstrap responsif.',
+          ringkasan: 'Ketahui perbedaan penekanan antara konsep komputasi Informatika dan rekayasa kode praktis pada jurusan Rekayasa Perangkat Lunak.',
+          isi_artikel: '<p>Memilih arah fokus magang yang tepat merupakan langkah fundamental bagi setiap siswa kejuruan maupun mahasiswa teknologi...</p>',
+          nama_penulis: 'Fachry Rendy P',
+          profil_penulis: 'Praktisi teknologi informasi dan digital marketing dengan pengalaman lebih dari 8 tahun.',
+          tanggal_publish: '2026-11-08'
+        },
+        {
+          id: 3,
+          judul_artikel: 'Peran Krusial Siswa TKJ dalam Publikasi, Infrastruktur Server, dan Keamanan Website',
+          slug: 'peran-penting-tkj-dalam-publikasi-dan-keamanan-website',
+          label_artikel: 'Infrastruktur',
+          gambar_pertama: 'assets/img/blog/artikel-3-utama.webp',
+          alt_gambar_pertama: 'Siswa TKJ mengonfigurasi infrastruktur server web',
+          caption_gambar_pertama: 'Aktivitas Magang: Praktik konfigurasi server web Apache/Nginx, pengalamatan IP, dan pengujian response time.',
+          gambar_kedua: 'assets/img/blog/artikel-3-pendukung.webp',
+          alt_gambar_kedua: 'Konfigurasi DNS record dan sertifikat SSL pada server web',
+          caption_gambar_kedua: 'Praktik SysAdmin: Konfigurasi pemetaan domain DNS dan verifikasi token keamanan pada dashboard server hosting cloud.',
+          ringkasan: 'Website tidak dapat diakses publik tanpa infrastruktur server, konfigurasi domain DNS, dan pengamanan koneksi HTTPS yang stabil.',
+          isi_artikel: '<p>Ketika sebuah website diluncurkan ke internet, banyak orang hanya mengamati keindahan antarmuka visualnya. Namun di balik layar, infrastruktur jaringan memegang peran kunci...</p>',
+          nama_penulis: 'Fachry Rendy P',
+          profil_penulis: 'Praktisi teknologi informasi dan digital marketing dengan pengalaman lebih dari 8 tahun.',
+          tanggal_publish: '2026-11-05'
+        }
+      ]
+    };
+
+    // =========================================================================
+    // 2. STATE MANAGEMENT & LOCAL STORAGE
+    // =========================================================================
+    let appData = {
+      testimoni: [],
+      portofolio: [],
+      galeri: [],
+      artikel: []
+    };
+
+    let isMySqlConnected = false;
+
+    async function initStorage() {
+      const dbBadge = document.getElementById('dbStatusBadge');
+      const dbAlert = document.getElementById('dbSyncAlert');
+
+      // Coba ambil data langsung dari database MySQL via API backend
+      if (window.location.protocol.startsWith('http')) {
+        try {
+          const res = await fetch('api_data.php?action=get_all');
+          if (res.ok) {
+            const json = await res.json();
+            if (json.success && json.data) {
+              isMySqlConnected = true;
+              
+              // Cek apakah tabel database MySQL sudah berisi data
+              const totalRows = (json.data.testimoni.length + json.data.portofolio.length + json.data.galeri.length + json.data.artikel.length);
+              
+              if (totalRows > 0) {
+                // Gunakan data asli dari database MySQL
+                appData.testimoni = json.data.testimoni.map(t => ({
+                  id: parseInt(t.id),
+                  nama: t.nama,
+                  asal_sekolah_kampus: t.asal_sekolah_kampus,
+                  jurusan: t.jurusan,
+                  isi_testimoni: t.isi_testimoni
+                }));
+
+                appData.portofolio = json.data.portofolio.map(p => ({
+                  id: parseInt(p.id),
+                  judul_portofolio: p.judul_portofolio,
+                  kategori: p.kategori,
+                  gambar: p.gambar,
+                  alt_gambar: p.alt_gambar || p.judul_portofolio,
+                  deskripsi: p.deskripsi,
+                  tim_jurusan_sekolah_kampus: p.tim_jurusan_sekolah_kampus,
+                  is_online: parseInt(p.is_online),
+                  link_hasil: p.link_hasil,
+                  status_label: p.status_label || 'Selesai'
+                }));
+
+                appData.galeri = json.data.galeri.map(g => ({
+                  id: parseInt(g.id),
+                  nama: g.nama,
+                  kategori: g.kategori,
+                  gambar: g.gambar,
+                  alt_gambar: g.alt_gambar || g.nama,
+                  deskripsi: g.deskripsi,
+                  deskripsi_singkat: g.deskripsi_singkat
+                }));
+
+                appData.artikel = json.data.artikel.map(a => ({
+                  id: parseInt(a.id),
+                  judul_artikel: a.judul_artikel,
+                  slug: a.slug,
+                  label_artikel: a.label_artikel,
+                  gambar_pertama: a.gambar_pertama,
+                  alt_gambar_pertama: a.alt_gambar_pertama,
+                  caption_gambar_pertama: a.caption_gambar_pertama,
+                  gambar_kedua: a.gambar_kedua,
+                  alt_gambar_kedua: a.alt_gambar_kedua,
+                  caption_gambar_kedua: a.caption_gambar_kedua,
+                  ringkasan: a.ringkasan,
+                  isi_artikel: a.isi_artikel,
+                  nama_penulis: a.nama_penulis,
+                  profil_penulis: a.profil_penulis,
+                  tanggal_publish: a.tanggal_publish
+                }));
+
+                if (dbBadge) {
+                  dbBadge.className = 'd-none d-md-flex align-items-center gap-2 small px-3 py-1 rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25';
+                  dbBadge.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i> <strong>MySQL Aktif (db_magang_digital)</strong>';
+                }
+                if (dbAlert) dbAlert.classList.add('d-none');
+                renderAll();
+                return;
+              } else {
+                // Terhubung ke MySQL tapi tabelnya masih kosong 0 rows
+                if (dbBadge) {
+                  dbBadge.className = 'd-none d-md-flex align-items-center gap-2 small px-3 py-1 rounded-pill bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25';
+                  dbBadge.innerHTML = '<i class="bi bi-exclamation-triangle-fill text-warning"></i> <strong>MySQL Kosong (0 Data)</strong>';
+                }
+                if (dbAlert) dbAlert.classList.remove('d-none');
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('Gagal memuat dari API MySQL, fallback ke LocalStorage:', e);
+        }
+      }
+
+      // Fallback: Muat dari LocalStorage / Default Data
+      if (dbBadge) {
+        dbBadge.className = 'd-none d-md-flex align-items-center gap-2 small px-3 py-1 rounded-pill bg-light border text-muted';
+        dbBadge.innerHTML = '<i class="bi bi-hdd-fill text-secondary"></i> <span>Mode Offline / Standalone</span>';
+      }
+
+      ['testimoni', 'portofolio', 'galeri', 'artikel'].forEach(key => {
+        const stored = localStorage.getItem('magang_' + key);
+        if (stored) {
+          try {
+            appData[key] = JSON.parse(stored);
+          } catch (e) {
+            appData[key] = defaultData[key];
+          }
+        } else {
+          appData[key] = JSON.parse(JSON.stringify(defaultData[key]));
+          localStorage.setItem('magang_' + key, JSON.stringify(appData[key]));
+        }
+      });
+      renderAll();
+    }
+
+    function saveToStorage(key) {
+      localStorage.setItem('magang_' + key, JSON.stringify(appData[key]));
+      renderAll();
+    }
+
+    function resetToDefaultData() {
+      if (confirm('Yakin ingin mereset seluruh data kembali ke setelan default database.sql?')) {
+        ['testimoni', 'portofolio', 'galeri', 'artikel'].forEach(key => {
+          appData[key] = JSON.parse(JSON.stringify(defaultData[key]));
+          localStorage.setItem('magang_' + key, JSON.stringify(appData[key]));
+        });
+        renderAll();
+        showToast('Data berhasil direset ke nilai default!', 'success');
+      }
+    }
+
+    
+    // =========================================================================
+    // EXPORT SELURUH DATA TERBARU DASHBOARD KE FILE SQL (SIAP IMPORT KE PHPMYADMIN)
+    // =========================================================================
+    function exportCurrentDataToSQL() {
+      let sql = "-- =====================================================================\n";
+      sql += "-- Data Terkini Hasil Input/Edit Dashboard Admin Website Magang Digital\n";
+      sql += "-- Diekspor pada: " + new Date().toLocaleString('id-ID') + "\n";
+      sql += "-- =====================================================================\n\n";
+      sql += "USE `db_magang_digital`;\n\n";
+
+      // 1. Testimoni
+      if (appData.testimoni.length > 0) {
+        sql += "-- TABEL TESTIMONI\nDELETE FROM `testimoni`;\n";
+        sql += "INSERT INTO `testimoni` (`id`, `nama`, `isi_testimoni`, `asal_sekolah_kampus`, `jurusan`, `urutan`, `is_aktif`) VALUES\n";
+        sql += appData.testimoni.map((t, i) => 
+          "(" + t.id + ", " + escapeSql(t.nama) + ", " + escapeSql(t.isi_testimoni) + ", " + escapeSql(t.asal_sekolah_kampus) + ", " + escapeSql(t.jurusan) + ", " + (i + 1) + ", 1)"
+        ).join(",\n") + ";\n\n";
+      }
+
+      // 2. Portofolio
+      if (appData.portofolio.length > 0) {
+        sql += "-- TABEL PORTOFOLIO\nDELETE FROM `portofolio`;\n";
+        sql += "INSERT INTO `portofolio` (`id`, `judul_portofolio`, `slug`, `kategori`, `gambar`, `alt_gambar`, `deskripsi`, `tim_jurusan_sekolah_kampus`, `is_online`, `link_hasil`, `status_label`, `urutan`) VALUES\n";
+        sql += appData.portofolio.map((p, i) => {
+          const slug = (p.slug || p.judul_portofolio).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          const link = p.link_hasil ? escapeSql(p.link_hasil) : "NULL";
+          return "(" + p.id + ", " + escapeSql(p.judul_portofolio) + ", " + escapeSql(slug) + ", " + escapeSql(p.kategori) + ", " + escapeSql(p.gambar) + ", " + escapeSql(p.alt_gambar || p.judul_portofolio) + ", " + escapeSql(p.deskripsi) + ", " + escapeSql(p.tim_jurusan_sekolah_kampus) + ", " + (p.is_online ? 1 : 0) + ", " + link + ", " + escapeSql(p.status_label || 'Selesai') + ", " + (i + 1) + ")";
+        }).join(",\n") + ";\n\n";
+      }
+
+      // 3. Galeri
+      if (appData.galeri.length > 0) {
+        sql += "-- TABEL GALERI\nDELETE FROM `galeri`;\n";
+        sql += "INSERT INTO `galeri` (`id`, `nama`, `kategori`, `gambar`, `alt_gambar`, `deskripsi`, `deskripsi_singkat`, `urutan`) VALUES\n";
+        sql += appData.galeri.map((g, i) => 
+          "(" + g.id + ", " + escapeSql(g.nama) + ", " + escapeSql(g.kategori) + ", " + escapeSql(g.gambar) + ", " + escapeSql(g.alt_gambar || g.nama) + ", " + escapeSql(g.deskripsi) + ", " + escapeSql(g.deskripsi_singkat || g.deskripsi) + ", " + (i + 1) + ")"
+        ).join(",\n") + ";\n\n";
+      }
+
+      // 4. Artikel
+      if (appData.artikel.length > 0) {
+        sql += "-- TABEL ARTIKEL\nDELETE FROM `artikel`;\n";
+        sql += "INSERT INTO `artikel` (`id`, `judul_artikel`, `slug`, `label_artikel`, `gambar_pertama`, `alt_gambar_pertama`, `caption_gambar_pertama`, `gambar_kedua`, `alt_gambar_kedua`, `caption_gambar_kedua`, `ringkasan`, `isi_artikel`, `nama_penulis`, `profil_penulis`, `tanggal_publish`, `views`, `status`) VALUES\n";
+        sql += appData.artikel.map((a, i) => {
+          const slug = (a.slug || a.judul_artikel).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          const profil = a.profil_penulis ? escapeSql(a.profil_penulis) : "NULL";
+          return "(" + a.id + ", " + escapeSql(a.judul_artikel) + ", " + escapeSql(slug) + ", " + escapeSql(a.label_artikel) + ", " + escapeSql(a.gambar_pertama) + ", " + escapeSql(a.alt_gambar_pertama || a.judul_artikel) + ", " + escapeSql(a.caption_gambar_pertama || '') + ", " + escapeSql(a.gambar_kedua) + ", " + escapeSql(a.alt_gambar_kedua || a.judul_artikel) + ", " + escapeSql(a.caption_gambar_kedua || '') + ", " + escapeSql(a.ringkasan) + ", " + escapeSql(a.isi_artikel) + ", " + escapeSql(a.nama_penulis || 'Fachry Rendy P') + ", " + profil + ", " + escapeSql(a.tanggal_publish || '2026-11-10') + ", 150, 'published')";
+        }).join(",\n") + ";\n\n";
+      }
+
+      function escapeSql(str) {
+        if (!str) return "''";
+        return "'" + String(str).replace(/'/g, "''").replace(/\\/g, '\\\\') + "'";
+      }
+
+      // Buat file download
+      const blob = new Blob([sql], { type: 'text/sql;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'update_database_magang.sql';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('File update_database_magang.sql berhasil diunduh! Siap di-import ke phpMyAdmin.', 'success');
+    }
+
+    // =========================================================================
+    // 3. TAB NAVIGATION CONTROLLER
+    // =========================================================================
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+      document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+
+      const targetPanel = document.getElementById('tab-' + tabName);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+
+      // Title header update
+      const titles = {
+        overview: 'Ringkasan Sistem & Statistik',
+        testimoni: 'Kelola Testimoni Alumni',
+        portofolio: 'Kelola Portofolio Proyek',
+        galeri: 'Kelola Dokumentasi Galeri',
+        artikel: 'Kelola Artikel & Panduan'
+      };
+      document.getElementById('pageTitle').textContent = titles[tabName] || 'Dashboard Admin';
+
+      // Active state on sidebar
+      const links = document.querySelectorAll('.sidebar-menu .menu-link');
+      links.forEach(l => {
+        if (l.getAttribute('onclick') && l.getAttribute('onclick').includes(tabName)) {
+          l.classList.add('active');
+        }
+      });
+
+      // Mobile close sidebar
+      if (window.innerWidth < 992) {
+        document.getElementById('sidebar').classList.remove('show');
+      }
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+
+    // =========================================================================
+    // 4. LOGOUT POPUP CONTROLLER (SESUAI INSTRUKSI SPESIFIK USER)
+    // Peringatan popup "Yakin mau logout?" dengan tombol Batal dan Logout
+    // =========================================================================
+    const modalLogoutObj = new bootstrap.Modal(document.getElementById('modalLogout'));
+
+    function triggerLogoutModal() {
+      modalLogoutObj.show();
+    }
+
+    function executeLogout() {
+      // Hapus sesi admin
+      sessionStorage.removeItem('magang_admin_session');
+      localStorage.removeItem('magang_admin_session');
+
+      modalLogoutObj.hide();
+      showToast('Berhasil logout. Mengalihkan ke halaman login...', 'info');
+
+      setTimeout(() => {
+        window.location.href = 'masukpak.html';
+      }, 600);
+    }
+
+    // =========================================================================
+    // 5. RENDER FUNCTIONS
+    // =========================================================================
+    function renderAll() {
+      // Badges & Counts
+      document.getElementById('statTestimoni').textContent = appData.testimoni.length;
+      document.getElementById('badgeTestimoni').textContent = appData.testimoni.length;
+
+      document.getElementById('statPortofolio').textContent = appData.portofolio.length;
+      document.getElementById('badgePortofolio').textContent = appData.portofolio.length;
+
+      document.getElementById('statGaleri').textContent = appData.galeri.length;
+      document.getElementById('badgeGaleri').textContent = appData.galeri.length;
+
+      document.getElementById('statArtikel').textContent = appData.artikel.length;
+      document.getElementById('badgeArtikel').textContent = appData.artikel.length;
+
+      renderTestimoni();
+      renderPortofolio();
+      renderGaleri();
+      renderArtikel();
+    }
+
+    // RENDER: Testimoni
+    function renderTestimoni() {
+      const tbody = document.getElementById('tbodyTestimoni');
+      if (appData.testimoni.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted">Belum ada data testimoni.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appData.testimoni.map((item, index) => `
+        <tr>
+          <td><span class="text-muted small fw-bold">${index + 1}</span></td>
+          <td><strong class="text-dark">${escapeHtml(item.nama)}</strong></td>
+          <td>${escapeHtml(item.asal_sekolah_kampus)}</td>
+          <td><span class="badge bg-light text-dark border">${escapeHtml(item.jurusan)}</span></td>
+          <td><small class="text-muted d-block text-truncate" style="max-width: 320px;">"${escapeHtml(item.isi_testimoni)}"</small></td>
+          <td class="text-center">
+            <button class="btn-action btn-action-edit" onclick="editTestimoni(${item.id})" title="Edit Testimoni">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn-action btn-action-delete" onclick="deleteTestimoni(${item.id})" title="Hapus Testimoni">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // RENDER: Portofolio
+    function renderPortofolio() {
+      const tbody = document.getElementById('tbodyPortofolio');
+      if (appData.portofolio.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Belum ada data portofolio.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appData.portofolio.map((item, index) => `
+        <tr>
+          <td><span class="text-muted small fw-bold">${index + 1}</span></td>
+          <td><img src="${item.gambar}" alt="${escapeHtml(item.judul_portofolio)}" class="table-img-thumb" onerror="this.src='assets/img/Portofolio/portofolio-1.webp'"></td>
+          <td>
+            <strong class="text-dark d-block">${escapeHtml(item.judul_portofolio)}</strong>
+            <small class="text-muted d-block text-truncate" style="max-width: 250px;">${escapeHtml(item.deskripsi)}</small>
+          </td>
+          <td><span class="badge bg-light text-dark border">${escapeHtml(item.kategori)}</span></td>
+          <td><small><i class="bi bi-people me-1"></i>${escapeHtml(item.tim_jurusan_sekolah_kampus)}</small></td>
+          <td>
+            ${item.is_online ? 
+              `<span class="badge-online mb-1"><i class="bi bi-check-circle-fill"></i> Online</span><br><a href="${item.link_hasil}" target="_blank" class="small text-decoration-none text-primary"><i class="bi bi-link-45deg"></i>Lihat Hasil</a>` : 
+              `<span class="badge-offline">Belum Online</span>`}
+          </td>
+          <td class="text-center">
+            <button class="btn-action btn-action-edit" onclick="editPortofolio(${item.id})" title="Edit Portofolio">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn-action btn-action-delete" onclick="deletePortofolio(${item.id})" title="Hapus Portofolio">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // RENDER: Galeri
+    function renderGaleri() {
+      const tbody = document.getElementById('tbodyGaleri');
+      if (appData.galeri.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Belum ada data galeri.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appData.galeri.map((item, index) => `
+        <tr>
+          <td><span class="text-muted small fw-bold">${index + 1}</span></td>
+          <td><img src="${item.gambar}" alt="${escapeHtml(item.nama)}" class="table-img-thumb" onerror="this.src='assets/img/Galeri/galeri-1.webp'"></td>
+          <td><strong class="text-dark">${escapeHtml(item.nama)}</strong></td>
+          <td><span class="badge bg-light text-dark border">${escapeHtml(item.kategori)}</span></td>
+          <td><small class="text-muted d-block text-truncate" style="max-width: 220px;">${escapeHtml(item.deskripsi)}</small></td>
+          <td><small class="text-primary d-block text-truncate" style="max-width: 200px;">${escapeHtml(item.deskripsi_singkat)}</small></td>
+          <td class="text-center">
+            <button class="btn-action btn-action-edit" onclick="editGaleri(${item.id})" title="Edit Galeri">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn-action btn-action-delete" onclick="deleteGaleri(${item.id})" title="Hapus Galeri">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // RENDER: Artikel
+    function renderArtikel() {
+      const tbody = document.getElementById('tbodyArtikel');
+      if (appData.artikel.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Belum ada data artikel.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = appData.artikel.map((item, index) => `
+        <tr>
+          <td><span class="text-muted small fw-bold">${index + 1}</span></td>
+          <td><img src="${item.gambar_pertama}" alt="${escapeHtml(item.judul_artikel)}" class="table-img-thumb" onerror="this.src='assets/img/blog/artikel-1-utama.webp'"></td>
+          <td>
+            <strong class="text-dark d-block">${escapeHtml(item.judul_artikel)}</strong>
+            <small class="text-muted d-block text-truncate" style="max-width: 280px;">${escapeHtml(item.ringkasan)}</small>
+          </td>
+          <td><span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25">${escapeHtml(item.label_artikel)}</span></td>
+          <td><small><i class="bi bi-person me-1"></i>${escapeHtml(item.nama_penulis)}</small></td>
+          <td><small class="text-muted">${item.tanggal_publish}</small></td>
+          <td class="text-center">
+            <button class="btn-action" style="color: #0284c7;" onclick="previewArtikelBlog(${item.id})" title="Lihat Halaman Artikel Sesuai Folder Blog">
+              <i class="bi bi-eye-fill"></i>
+            </button>
+            <button class="btn-action btn-action-edit" onclick="editArtikel(${item.id})" title="Edit Artikel">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn-action btn-action-delete" onclick="deleteArtikel(${item.id})" title="Hapus Artikel">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 6. CRUD MODALS & LOGIC: TESTIMONI
+    // =========================================================================
+    const modalTestimoniObj = new bootstrap.Modal(document.getElementById('modalTestimoni'));
+
+    function openAddModal(type) {
+      if (type === 'testimoni') {
+        document.getElementById('formTestimoni').reset();
+        document.getElementById('testimoniId').value = '';
+        document.getElementById('titleModalTestimoni').textContent = 'Tambah Testimoni Baru';
+        modalTestimoniObj.show();
+      } else if (type === 'portofolio') {
+        document.getElementById('formPortofolio').reset();
+        document.getElementById('portofolioId').value = '';
+        document.getElementById('titleModalPortofolio').textContent = 'Tambah Portofolio Baru';
+        toggleLinkHasil();
+        modalPortofolioObj.show();
+      } else if (type === 'galeri') {
+        document.getElementById('formGaleri').reset();
+        document.getElementById('galeriId').value = '';
+        document.getElementById('titleModalGaleri').textContent = 'Tambah Galeri Kegiatan';
+        modalGaleriObj.show();
+      } else if (type === 'artikel') {
+        document.getElementById('formArtikel').reset();
+        document.getElementById('artikelId').value = '';
+        document.getElementById('artikelPenulis').value = 'Fachry Rendy P';
+        document.getElementById('titleModalArtikel').textContent = 'Tulis Artikel Baru';
+        document.getElementById('wordCanvas').innerHTML = '<p class="lead">Ketik atau tempelkan isi artikel Anda di sini seperti di lembar kerja Microsoft Word...</p>';
+        updateWordStats();
+        modalArtikelObj.show();
+      }
+    }
+
+    function editTestimoni(id) {
+      const item = appData.testimoni.find(t => t.id === id);
+      if (!item) return;
+      document.getElementById('testimoniId').value = item.id;
+      document.getElementById('testimoniNama').value = item.nama;
+      document.getElementById('testimoniAsal').value = item.asal_sekolah_kampus;
+      document.getElementById('testimoniJurusan').value = item.jurusan;
+      document.getElementById('testimoniIsi').value = item.isi_testimoni;
+      document.getElementById('titleModalTestimoni').textContent = 'Edit Data Testimoni';
+      modalTestimoniObj.show();
+    }
+
+    function saveTestimoni(e) {
+      e.preventDefault();
+      const id = document.getElementById('testimoniId').value;
+      const data = {
+        nama: document.getElementById('testimoniNama').value.trim(),
+        asal_sekolah_kampus: document.getElementById('testimoniAsal').value.trim(),
+        jurusan: document.getElementById('testimoniJurusan').value.trim(),
+        isi_testimoni: document.getElementById('testimoniIsi').value.trim()
+      };
+
+      // Kirim langsung ke Database MySQL jika aktif
+      if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+        fetch('api_data.php?action=save_testimoni', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id || null, ...data })
+        }).then(r => r.json()).then(res => {
+          if (res.success) {
+            showToast(res.message, 'success');
+            initStorage();
+          }
+        }).catch(err => console.error(err));
+      }
+
+      if (id) {
+        const index = appData.testimoni.findIndex(t => t.id == id);
+        if (index !== -1) {
+          appData.testimoni[index] = { ...appData.testimoni[index], ...data };
+          showToast('Data testimoni berhasil diperbarui di database!', 'success');
+        }
+      } else {
+        const newId = appData.testimoni.length > 0 ? Math.max(...appData.testimoni.map(t => t.id)) + 1 : 1;
+        appData.testimoni.push({ id: newId, ...data });
+        showToast('Testimoni baru berhasil disimpan ke database MySQL!', 'success');
+      }
+
+      saveToStorage('testimoni');
+      modalTestimoniObj.hide();
+    }
+
+    function deleteTestimoni(id) {
+      if (confirm('Yakin ingin menghapus data testimoni ini dari database MySQL?')) {
+        if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+          fetch('api_data.php?action=delete_testimoni', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+          }).catch(e => console.error(e));
+        }
+        appData.testimoni = appData.testimoni.filter(t => t.id !== id);
+        saveToStorage('testimoni');
+        showToast('Testimoni berhasil dihapus dari database MySQL.', 'info');
+      }
+    }
+
+    // =========================================================================
+    // 7. CRUD MODALS & LOGIC: PORTOFOLIO
+    // =========================================================================
+    const modalPortofolioObj = new bootstrap.Modal(document.getElementById('modalPortofolio'));
+
+    function toggleLinkHasil() {
+      const isOnline = document.getElementById('portofolioIsOnline').value === '1';
+      document.getElementById('wrapperLinkHasil').style.display = isOnline ? 'block' : 'none';
+    }
+
+    function editPortofolio(id) {
+      const item = appData.portofolio.find(p => p.id === id);
+      if (!item) return;
+      document.getElementById('portofolioId').value = item.id;
+      document.getElementById('portofolioJudul').value = item.judul_portofolio;
+      document.getElementById('portofolioKategori').value = item.kategori;
+      document.getElementById('portofolioTim').value = item.tim_jurusan_sekolah_kampus;
+      document.getElementById('portofolioGambar').value = item.gambar;
+      document.getElementById('portofolioDeskripsi').value = item.deskripsi;
+      document.getElementById('portofolioIsOnline').value = item.is_online ? '1' : '0';
+      document.getElementById('portofolioLink').value = item.link_hasil || '';
+      toggleLinkHasil();
+      document.getElementById('titleModalPortofolio').textContent = 'Edit Data Portofolio';
+      modalPortofolioObj.show();
+    }
+
+    function savePortofolio(e) {
+      e.preventDefault();
+      const id = document.getElementById('portofolioId').value;
+      const isOnline = document.getElementById('portofolioIsOnline').value === '1';
+      const data = {
+        judul_portofolio: document.getElementById('portofolioJudul').value.trim(),
+        kategori: document.getElementById('portofolioKategori').value,
+        tim_jurusan_sekolah_kampus: document.getElementById('portofolioTim').value.trim(),
+        gambar: document.getElementById('portofolioGambar').value.trim(),
+        alt_gambar: document.getElementById('portofolioJudul').value.trim(),
+        deskripsi: document.getElementById('portofolioDeskripsi').value.trim(),
+        is_online: isOnline ? 1 : 0,
+        link_hasil: isOnline ? document.getElementById('portofolioLink').value.trim() : null,
+        status_label: 'Selesai'
+      };
+
+      // Kirim langsung ke Database MySQL jika aktif
+      if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+        fetch('api_data.php?action=save_portofolio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id || null, ...data })
+        }).then(r => r.json()).then(res => {
+          if (res.success) {
+            showToast(res.message, 'success');
+            initStorage();
+          }
+        }).catch(err => console.error(err));
+      }
+
+      if (id) {
+        const index = appData.portofolio.findIndex(p => p.id == id);
+        if (index !== -1) {
+          appData.portofolio[index] = { ...appData.portofolio[index], ...data };
+          showToast('Data portofolio berhasil diperbarui di database!', 'success');
+        }
+      } else {
+        const newId = appData.portofolio.length > 0 ? Math.max(...appData.portofolio.map(p => p.id)) + 1 : 1;
+        appData.portofolio.push({ id: newId, ...data });
+        showToast('Portofolio baru berhasil disimpan ke database MySQL!', 'success');
+      }
+
+      saveToStorage('portofolio');
+      modalPortofolioObj.hide();
+    }
+
+    function deletePortofolio(id) {
+      if (confirm('Yakin ingin menghapus portofolio ini dari database MySQL?')) {
+        if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+          fetch('api_data.php?action=delete_portofolio', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+          }).catch(e => console.error(e));
+        }
+        appData.portofolio = appData.portofolio.filter(p => p.id !== id);
+        saveToStorage('portofolio');
+        showToast('Portofolio berhasil dihapus dari database MySQL.', 'info');
+      }
+    }
+
+    // =========================================================================
+    // 8. CRUD MODALS & LOGIC: GALERI
+    // =========================================================================
+    const modalGaleriObj = new bootstrap.Modal(document.getElementById('modalGaleri'));
+
+    function editGaleri(id) {
+      const item = appData.galeri.find(g => g.id === id);
+      if (!item) return;
+      document.getElementById('galeriId').value = item.id;
+      document.getElementById('galeriNama').value = item.nama;
+      document.getElementById('galeriKategori').value = item.kategori;
+      document.getElementById('galeriGambar').value = item.gambar;
+      document.getElementById('galeriDeskripsi').value = item.deskripsi;
+      document.getElementById('galeriDeskripsiSingkat').value = item.deskripsi_singkat;
+      document.getElementById('titleModalGaleri').textContent = 'Edit Data Galeri';
+      modalGaleriObj.show();
+    }
+
+    function saveGaleri(e) {
+      e.preventDefault();
+      const id = document.getElementById('galeriId').value;
+      const data = {
+        nama: document.getElementById('galeriNama').value.trim(),
+        kategori: document.getElementById('galeriKategori').value,
+        gambar: document.getElementById('galeriGambar').value.trim(),
+        alt_gambar: document.getElementById('galeriNama').value.trim(),
+        deskripsi: document.getElementById('galeriDeskripsi').value.trim(),
+        deskripsi_singkat: document.getElementById('galeriDeskripsiSingkat').value.trim()
+      };
+
+      // Kirim langsung ke Database MySQL jika aktif
+      if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+        fetch('api_data.php?action=save_galeri', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id || null, ...data })
+        }).then(r => r.json()).then(res => {
+          if (res.success) {
+            showToast(res.message, 'success');
+            initStorage();
+          }
+        }).catch(err => console.error(err));
+      }
+
+      if (id) {
+        const index = appData.galeri.findIndex(g => g.id == id);
+        if (index !== -1) {
+          appData.galeri[index] = { ...appData.galeri[index], ...data };
+          showToast('Data galeri berhasil diperbarui di database!', 'success');
+        }
+      } else {
+        const newId = appData.galeri.length > 0 ? Math.max(...appData.galeri.map(g => g.id)) + 1 : 1;
+        appData.galeri.push({ id: newId, ...data });
+        showToast('Galeri kegiatan baru berhasil disimpan ke database MySQL!', 'success');
+      }
+
+      saveToStorage('galeri');
+      modalGaleriObj.hide();
+    }
+
+    function deleteGaleri(id) {
+      if (confirm('Yakin ingin menghapus dokumentasi galeri ini dari database MySQL?')) {
+        if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+          fetch('api_data.php?action=delete_galeri', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+          }).catch(e => console.error(e));
+        }
+        appData.galeri = appData.galeri.filter(g => g.id !== id);
+        saveToStorage('galeri');
+        showToast('Galeri berhasil dihapus dari database MySQL.', 'info');
+      }
+    }
+
+    // =========================================================================
+    // 9. CRUD MODALS & LOGIC: ARTIKEL
+    // =========================================================================
+    const modalArtikelObj = new bootstrap.Modal(document.getElementById('modalArtikel'));
+
+    function editArtikel(id) {
+      const item = appData.artikel.find(a => a.id === id);
+      if (!item) return;
+      document.getElementById('artikelId').value = item.id;
+      document.getElementById('artikelJudul').value = item.judul_artikel;
+      document.getElementById('artikelLabel').value = item.label_artikel;
+      document.getElementById('artikelGambar1').value = item.gambar_pertama;
+      document.getElementById('artikelAlt1').value = item.alt_gambar_pertama;
+      document.getElementById('artikelCaption1').value = item.caption_gambar_pertama;
+      document.getElementById('artikelGambar2').value = item.gambar_kedua;
+      document.getElementById('artikelAlt2').value = item.alt_gambar_kedua;
+      document.getElementById('artikelCaption2').value = item.caption_gambar_kedua;
+      document.getElementById('artikelRingkasan').value = item.ringkasan;
+      document.getElementById('artikelIsi').value = item.isi_artikel;
+      document.getElementById('wordCanvas').innerHTML = item.isi_artikel || '';
+      updateWordStats();
+      document.getElementById('artikelPenulis').value = item.nama_penulis;
+      document.getElementById('artikelProfilPenulis').value = item.profil_penulis || '';
+      document.getElementById('titleModalArtikel').textContent = 'Edit Data Artikel';
+      modalArtikelObj.show();
+    }
+
+    function saveArtikel(e) {
+      e.preventDefault();
+      const id = document.getElementById('artikelId').value;
+      const data = {
+        judul_artikel: document.getElementById('artikelJudul').value.trim(),
+        label_artikel: document.getElementById('artikelLabel').value.trim(),
+        gambar_pertama: document.getElementById('artikelGambar1').value.trim(),
+        alt_gambar_pertama: document.getElementById('artikelAlt1').value.trim(),
+        caption_gambar_pertama: document.getElementById('artikelCaption1').value.trim(),
+        gambar_kedua: document.getElementById('artikelGambar2').value.trim(),
+        alt_gambar_kedua: document.getElementById('artikelAlt2').value.trim(),
+        caption_gambar_kedua: document.getElementById('artikelCaption2').value.trim(),
+        ringkasan: document.getElementById('artikelRingkasan').value.trim(),
+        isi_artikel: document.getElementById('wordCanvas').innerHTML.trim(),
+        nama_penulis: document.getElementById('artikelPenulis').value.trim(),
+        profil_penulis: document.getElementById('artikelProfilPenulis').value.trim() || null,
+        tanggal_publish: new Date().toISOString().split('T')[0]
+      };
+
+      // Kirim langsung ke Database MySQL jika aktif
+      if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+        fetch('api_data.php?action=save_artikel', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: id || null, ...data })
+        }).then(r => r.json()).then(res => {
+          if (res.success) {
+            showToast(res.message, 'success');
+            initStorage();
+          }
+        }).catch(err => console.error(err));
+      }
+
+      if (id) {
+        const index = appData.artikel.findIndex(a => a.id == id);
+        if (index !== -1) {
+          appData.artikel[index] = { ...appData.artikel[index], ...data };
+          showToast('Data artikel berhasil diperbarui di database!', 'success');
+        }
+      } else {
+        const newId = appData.artikel.length > 0 ? Math.max(...appData.artikel.map(a => a.id)) + 1 : 1;
+        const slug = data.judul_artikel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        appData.artikel.push({ id: newId, slug: slug, ...data });
+        showToast('Artikel baru berhasil disimpan ke database MySQL!', 'success');
+      }
+
+      saveToStorage('artikel');
+      modalArtikelObj.hide();
+    }
+
+    function deleteArtikel(id) {
+      if (confirm('Yakin ingin menghapus artikel ini dari database MySQL?')) {
+        if (isMySqlConnected || window.location.protocol.startsWith('http')) {
+          fetch('api_data.php?action=delete_artikel', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+          }).catch(e => console.error(e));
+        }
+        appData.artikel = appData.artikel.filter(a => a.id !== id);
+        saveToStorage('artikel');
+        showToast('Artikel berhasil dihapus dari database MySQL.', 'info');
+      }
+    }
+
+    // =========================================================================
+    
+    // =========================================================================
+    // MICROSOFT WORD-STYLE EDITOR FUNCTIONS
+    // =========================================================================
+    function execWordCmd(command, value = null) {
+      document.execCommand(command, false, value);
+      document.getElementById('wordCanvas').focus();
+      updateWordStats();
+    }
+
+    function formatHeading(tag) {
+      if (tag === 'p') {
+        document.execCommand('formatBlock', false, '<p>');
+      } else if (tag === 'h2') {
+        document.execCommand('formatBlock', false, '<h2>');
+      } else if (tag === 'h3') {
+        document.execCommand('formatBlock', false, '<h3>');
+      }
+      document.getElementById('wordCanvas').focus();
+      updateWordStats();
+    }
+
+    function insertWordLink() {
+      const url = prompt('Masukkan alamat URL tautan (contoh: https://gomagangdigital.vercel.app):', 'https://');
+      if (url && url !== 'https://') {
+        document.execCommand('createLink', false, url);
+      }
+      updateWordStats();
+    }
+
+    function insertBacaJugaTemplate() {
+      const title = prompt('Masukkan Judul Artikel yang Direkomendasikan:', 'Perbedaan Fokus Magang Jurusan Informatika dan RPL');
+      if (title) {
+        const html = `<div class="baca-juga-card"><div class="baca-juga-tag"><i class="bi bi-bookmark-check me-1"></i> BACA JUGA:</div><a href="#" class="baca-juga-link">${escapeHtml(title)}</a></div><p></p>`;
+        document.execCommand('insertHTML', false, html);
+      }
+      updateWordStats();
+    }
+
+    function insertFaqTemplate() {
+      const q = prompt('Masukkan Pertanyaan FAQ:', 'Apakah peserta magang mendapatkan sertifikat resmi?');
+      const a = prompt('Masukkan Jawaban FAQ:', 'Ya, seluruh peserta yang telah menyelesaikan program magang dan proyek praktik akan mendapatkan sertifikat resmi kelulusan magang.');
+      if (q && a) {
+        const html = `<div class="faq-item-box"><strong>Pertanyaan: ${escapeHtml(q)}</strong><p class="mb-0 mt-1">Jawaban: ${escapeHtml(a)}</p></div><p></p>`;
+        document.execCommand('insertHTML', false, html);
+      }
+      updateWordStats();
+    }
+
+    function insertKesimpulanTemplate() {
+      const summary = prompt('Tuliskan rangkuman kesimpulan artikel:', 'Menguasai keterampilan pembuatan website dan digital marketing adalah investasi strategis bagi siswa dan mahasiswa.');
+      if (summary) {
+        const html = `<div class="kesimpulan-box"><h3 style="color:#6B1026; margin-top:0;">Kesimpulan</h3><p>${escapeHtml(summary)}</p></div><p></p>`;
+        document.execCommand('insertHTML', false, html);
+      }
+      updateWordStats();
+    }
+
+    function updateWordStats() {
+      const canvas = document.getElementById('wordCanvas');
+      const text = canvas.innerText || '';
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      
+      document.getElementById('wordCountLabel').textContent = words.toLocaleString('id-ID');
+      
+      // Reading time: approx 200 words per minute
+      const readMin = Math.max(1, Math.round(words / 200));
+      document.getElementById('readingTimeLabel').textContent = `~${readMin} Menit`;
+
+      const targetEl = document.getElementById('targetWordStatus');
+      if (words >= 900) {
+        targetEl.className = 'badge bg-success';
+        targetEl.innerHTML = '<i class="bi bi-check-circle me-1"></i> Memenuhi Target (>= 900 Kata)';
+      } else {
+        targetEl.className = 'badge bg-warning text-dark';
+        targetEl.innerHTML = `<i class="bi bi-exclamation-triangle me-1"></i> ${words}/900 Kata`;
+      }
+
+      // Sync to hidden textarea
+      document.getElementById('artikelIsi').value = canvas.innerHTML;
+    }
+
+    // =========================================================================
+    // AUTOMATIC BLOG PAGE PREVIEW (PERSIS SEPERTI DI FOLDER BLOG/)
+    // =========================================================================
+    const modalPreviewBlogObj = new bootstrap.Modal(document.getElementById('modalPreviewBlog'));
+
+    function previewArtikelBlog(id) {
+      const item = appData.artikel.find(a => a.id === id);
+      if (!item) return;
+      renderBlogPreviewHTML(item);
+      modalPreviewBlogObj.show();
+    }
+
+    function previewCurrentFormArticle() {
+      // Ambil data langsung dari form Word editor
+      const tempItem = {
+        judul_artikel: document.getElementById('artikelJudul').value.trim() || 'Judul Pratinjau Artikel',
+        label_artikel: document.getElementById('artikelLabel').value.trim() || 'Program Magang',
+        gambar_pertama: document.getElementById('artikelGambar1').value.trim() || 'assets/img/blog/artikel-1-utama.webp',
+        alt_gambar_pertama: document.getElementById('artikelAlt1').value.trim() || 'Gambar Utama',
+        caption_gambar_pertama: document.getElementById('artikelCaption1').value.trim() || 'Keterangan dokumentasi praktik artikel.',
+        gambar_kedua: document.getElementById('artikelGambar2').value.trim() || 'assets/img/blog/artikel-1-pendukung.webp',
+        alt_gambar_kedua: document.getElementById('artikelAlt2').value.trim() || 'Foto Pendukung',
+        caption_gambar_kedua: document.getElementById('artikelCaption2').value.trim() || 'Ilustrasi pendukung di dalam isi artikel.',
+        isi_artikel: document.getElementById('wordCanvas').innerHTML,
+        nama_penulis: document.getElementById('artikelPenulis').value.trim() || 'Fachry Rendy P',
+        profil_penulis: document.getElementById('artikelProfilPenulis').value.trim() || 'Praktisi teknologi informasi dan instruktur magang digital.',
+        tanggal_publish: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+      };
+      renderBlogPreviewHTML(tempItem);
+      modalPreviewBlogObj.show();
+    }
+
+    function renderBlogPreviewHTML(art) {
+      // Buat TOC otomatis dari H2 & H3 di dalam isi artikel
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = art.isi_artikel;
+      const headings = tempDiv.querySelectorAll('h2, h3');
+      let tocHTML = '';
+      if (headings.length > 0) {
+        tocHTML = `
+          <div class="p-3 mb-4 rounded-3 border" style="background:#fdf8f9; border-color: rgba(107,16,38,0.15) !important;">
+            <div class="fw-bold text-dark d-flex align-items-center justify-content-between mb-2">
+              <span><i class="bi bi-list-nested me-2 text-danger"></i> Daftar Isi Artikel</span>
+              <span class="badge bg-light text-dark border">Otomatis H2 &amp; H3</span>
+            </div>
+            <ul class="mb-0 ps-3 small">
+              ${Array.from(headings).map((h, i) => `
+                <li class="${h.tagName === 'H3' ? 'ms-3' : 'fw-semibold'} mb-1">
+                  <a href="#toc-${i}" class="text-decoration-none text-dark">${escapeHtml(h.textContent)}</a>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      // Hitung kata
+      const textOnly = tempDiv.innerText || '';
+      const wordCount = textOnly.trim().split(/\s+/).length;
+      const readMin = Math.max(1, Math.round(wordCount / 200));
+
+      const previewContainer = document.getElementById('previewBlogContainer');
+      previewContainer.innerHTML = `
+        <!-- Navbar Mockup -->
+        <div class="bg-white border-bottom py-3 px-4 shadow-sm mb-4 sticky-top">
+          <div class="d-flex align-items-center justify-content-between max-w-container">
+            <img src="assets/img/logo-program-magang.webp" alt="Logo" style="max-height: 32px;">
+            <div class="d-none d-md-flex gap-3 small fw-semibold text-muted">
+              <span>Beranda</span>
+              <span>Tentang Kami</span>
+              <span>Jurusan</span>
+              <span>Program</span>
+              <span>Portofolio</span>
+              <span>Galeri</span>
+              <span class="text-danger fw-bold">Blog</span>
+            </div>
+            <span class="btn btn-sm btn-danger px-3 py-1 fw-bold rounded-pill" style="background:#6B1026; border-color:#6B1026;">Daftar Magang</span>
+          </div>
+        </div>
+
+        <div class="blog-preview-container rounded-4 mb-5">
+          <!-- Breadcrumb -->
+          <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb small text-muted mb-0">
+              <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Blog</a></li>
+              <li class="breadcrumb-item active text-truncate" style="max-width: 300px;">${escapeHtml(art.judul_artikel)}</li>
+            </ol>
+          </nav>
+
+          <!-- H1 Judul -->
+          <h1 class="fw-bold mb-3" style="color: #6B1026; font-family: 'Montserrat', sans-serif; font-size: 28px; line-height: 1.35;">
+            ${escapeHtml(art.judul_artikel)}
+          </h1>
+
+          <!-- Meta Author, Date, Reading Time, Plagiarism -->
+          <div class="d-flex flex-wrap align-items-center gap-3 py-2 border-top border-bottom mb-4 text-muted small">
+            <span><i class="bi bi-person me-1 text-primary"></i> <strong>${escapeHtml(art.nama_penulis || 'Fachry Rendy P')}</strong></span>
+            <span><i class="bi bi-calendar3 me-1"></i> ${art.tanggal_publish}</span>
+            <span><i class="bi bi-clock me-1 text-danger"></i> ${readMin} Menit Baca (${wordCount}+ Kata)</span>
+            <span class="text-success fw-semibold"><i class="bi bi-shield-check me-1"></i> Terverifikasi Bebas Plagiasi</span>
+          </div>
+
+          <!-- Gambar Pertama (Di Bawah Judul) -->
+          <figure class="mb-4">
+            <img src="${art.gambar_pertama}" alt="${escapeHtml(art.alt_gambar_pertama || art.judul_artikel)}" class="img-fluid rounded-3 w-100 shadow-sm" style="max-height: 480px; object-fit: cover;" onerror="this.src='assets/img/blog/artikel-1-utama.webp'">
+            <figcaption class="small text-muted fst-italic mt-2">
+              <i class="bi bi-camera me-1"></i> ${escapeHtml(art.caption_gambar_pertama || 'Dokumentasi kegiatan praktik magang.')}
+            </figcaption>
+          </figure>
+
+          <!-- TOC Otomatis -->
+          ${tocHTML}
+
+          <!-- Isi Artikel Lengkap (Rendered from Word Editor) -->
+          <article class="article-content" style="line-height: 1.85; font-size: 15.5px; color: #2d3748;">
+            ${art.isi_artikel}
+          </article>
+
+          <!-- Gambar Kedua (Di Isi Artikel) -->
+          <figure class="my-4">
+            <img src="${art.gambar_kedua}" alt="${escapeHtml(art.alt_gambar_kedua || 'Foto Pendukung')}" class="img-fluid rounded-3 w-100 shadow-sm" style="max-height: 420px; object-fit: cover;" onerror="this.src='assets/img/blog/artikel-1-pendukung.webp'">
+            <figcaption class="small text-muted fst-italic mt-2">
+              <i class="bi bi-camera me-1"></i> ${escapeHtml(art.caption_gambar_kedua || 'Ilustrasi praktik materi kejuruan.')}
+            </figcaption>
+          </figure>
+
+          <!-- Bio Penulis -->
+          <div class="p-3 my-4 rounded-3 border d-flex gap-3 align-items-center" style="background:#fafafa;">
+            <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold fs-4 flex-shrink-0" style="width: 58px; height: 58px; background: #6B1026 !important;">
+              FR
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1" style="color: #6B1026;">${escapeHtml(art.nama_penulis || 'Fachry Rendy P')}</h6>
+              <span class="small text-muted d-block mb-1">Lead Web Architect &amp; Instruktur Magang Digital</span>
+              <p class="small text-muted mb-0">${escapeHtml(art.profil_penulis || 'Praktisi teknologi informasi dan digital marketing dengan pengalaman mendampingi siswa SMK dan mahasiswa vokasi.')}</p>
+            </div>
+          </div>
+
+          <!-- Share Section -->
+          <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border mb-4 bg-light">
+            <span class="small fw-bold text-dark"><i class="bi bi-share-fill me-1"></i> Bagikan Artikel Ini:</span>
+            <div class="d-flex gap-2">
+              <a href="#" class="btn btn-sm btn-success px-3"><i class="bi bi-whatsapp me-1"></i> WhatsApp</a>
+              <a href="#" class="btn btn-sm btn-primary px-3"><i class="bi bi-facebook me-1"></i> Facebook</a>
+              <a href="#" class="btn btn-sm btn-dark px-3"><i class="bi bi-twitter-x me-1"></i> X</a>
+            </div>
+          </div>
+
+          <!-- Rekomendasi Artikel Terkait -->
+          <div class="border-top pt-4 mt-4">
+            <h5 class="fw-bold mb-3" style="color: #6B1026; font-family: 'Montserrat', sans-serif;">Artikel Terkait</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card h-100 border p-3 rounded-3 shadow-sm">
+                  <h6 class="fw-bold mb-2">Mengapa Keterampilan Web &amp; Digital Marketing Sangat Dibutuhkan?</h6>
+                  <p class="small text-muted mb-2">Membuka peluang karier nyata bagi siswa SMK dan mahasiswa di era internet modern.</p>
+                  <span class="text-danger small fw-bold">Baca Selengkapnya &rarr;</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 border p-3 rounded-3 shadow-sm">
+                  <h6 class="fw-bold mb-2">Peran Penting Siswa TKJ dalam Publikasi &amp; Keamanan Web</h6>
+                  <p class="small text-muted mb-2">Infrastruktur server, DNS domain, dan protokol SSL pengamanan koneksi HTTPS.</p>
+                  <span class="text-danger small fw-bold">Baca Selengkapnya &rarr;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Mockup -->
+        <footer class="bg-dark text-white py-4 text-center small text-muted">
+          <p class="mb-0">&copy; 2026 Program Magang Pengembangan Website &amp; Digital Marketing. Seluruh hak cipta dilindungi.</p>
+        </footer>
+      `;
+    }
+
+    // 10. UTILITIES
+    // =========================================================================
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    const toastObj = new bootstrap.Toast(document.getElementById('actionToast'), { delay: 3500 });
+    function showToast(msg, type = 'success') {
+      const toastEl = document.getElementById('actionToast');
+      const iconEl = document.getElementById('toastIcon');
+      document.getElementById('toastMessage').textContent = msg;
+
+      if (type === 'success') {
+        iconEl.className = 'bi bi-check-circle-fill text-success fs-5';
+      } else if (type === 'danger') {
+        iconEl.className = 'bi bi-x-circle-fill text-danger fs-5';
+      } else {
+        iconEl.className = 'bi bi-info-circle-fill text-info fs-5';
+      }
+
+      toastObj.show();
+    }
+
+    // Cek status autentikasi saat dimuat
+    window.addEventListener('DOMContentLoaded', () => {
+      const session = sessionStorage.getItem('magang_admin_session') || localStorage.getItem('magang_admin_session');
+      if (session) {
+        try {
+          const parsed = JSON.parse(session);
+          if (parsed.fullName) {
+            document.getElementById('sidebarUserName').textContent = parsed.fullName;
+            document.getElementById('sidebarUserRole').textContent = parsed.role || 'Super Admin';
+            document.getElementById('sidebarAvatar').textContent = parsed.fullName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+          }
+        } catch(e) {}
+      }
+
+      initStorage();
+    });
+  </script>
+
+</body>
+
+</html>
+

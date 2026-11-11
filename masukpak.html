@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Masuk Admin - Portal Pengelolaan Website Magang Digital</title>
+  <meta name="description" content="Halaman login autentikasi dashboard administrator pengelola program magang digital.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/webp" href="assets/img/favicon-program-magang.webp">
+  <link rel="apple-touch-icon" href="assets/img/favicon-program-magang.webp">
+  <meta name="theme-color" content="#0F172A">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-900: #0a0f1d;
+      --navy-800: #0f172a;
+      --navy-700: #1e293b;
+      --navy-600: #334155;
+      --blue-accent: #2563eb;
+      --blue-accent-hover: #1d4ed8;
+      --blue-light: #38bdf8;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 50%, #0a0f1d 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background blur elements */
+    .ambient-glow {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, rgba(15, 23, 42, 0) 70%);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+      bottom: -100px;
+      left: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-header img {
+      max-height: 42px;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(37, 99, 235, 0.18);
+      color: var(--blue-light);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .brand-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 16px;
+      pointer-events: none;
+      transition: color 0.2s ease;
+    }
+
+    .form-control-custom {
+      width: 100%;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      padding: 12px 14px 12px 42px;
+      font-size: 14px;
+      color: #ffffff;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-control-custom:focus {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: var(--blue-accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+      color: #ffffff;
+    }
+
+    .form-control-custom:focus + .input-icon {
+      color: var(--blue-light);
+    }
+
+    .form-control-custom::placeholder {
+      color: #64748b;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-password:hover {
+      color: #ffffff;
+    }
+
+    /* Buttons */
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      margin-top: 10px;
+    }
+
+    .btn-login:hover {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .btn-exit {
+      width: 100%;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      margin-top: 12px;
+    }
+
+    .btn-exit:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+
+    /* Alert Box */
+    .alert-error {
+      display: none;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      align-items: center;
+      gap: 10px;
+      animation: shake 0.3s ease-in-out;
+    }
+
+    .alert-error.show {
+      display: flex;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-2"></div>
+
+  <div class="login-container">
+    <div class="login-card">
+
+      <div class="brand-header">
+        <a href="index.html" title="Kembali ke Beranda">
+          <img src="assets/img/logo-program-magang.webp" alt="Logo Program Magang" class="img-fluid">
+        </a>
+        <br>
+        <span class="brand-badge">
+          <i class="bi bi-shield-lock-fill"></i> Area Administrator
+        </span>
+        <h1 class="brand-title">Masuk Dashboard</h1>
+        <p class="brand-desc">Kelola testimoni, portofolio, galeri, dan artikel magang</p>
+      </div>
+
+      <!-- Alert Peringatan Gagal Login -->
+      <div id="alertError" class="alert-error" role="alert">
+        <i class="bi bi-exclamation-triangle-fill fs-5 flex-shrink-0 text-danger"></i>
+        <div id="alertMessage">Username atau password salah! Silakan periksa kembali.</div>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)" autocomplete="off">
+        <div class="form-group">
+          <label for="usernameInput" class="form-label">Username atau Email</label>
+          <div class="input-wrapper">
+            <input type="text" id="usernameInput" class="form-control-custom" placeholder="Ketik username / email admin" required autofocus>
+            <i class="bi bi-person input-icon"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="passwordInput" class="form-control-custom" placeholder="Ketik kata sandi" required>
+            <i class="bi bi-lock input-icon"></i>
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" aria-label="Lihat kata sandi">
+              <i id="eyeIcon" class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="form-check">
+            <input class="form-check-input bg-dark border-secondary" type="checkbox" id="rememberMe" checked>
+            <label class="form-check-label text-muted small" for="rememberMe">Ingat sesi saya</label>
+          </div>
+        </div>
+
+        <!-- Tombol Masuk / Login -->
+        <button type="submit" id="btnLogin" class="btn-login">
+          <span>Masuk ke Dashboard</span>
+          <i class="bi bi-box-arrow-in-right fs-5"></i>
+        </button>
+
+        <!-- Tombol Keluar untuk kembali ke halaman utama website -->
+        <a href="index.html" class="btn-exit" title="Kembali ke halaman utama website">
+          <i class="bi bi-arrow-left"></i>
+          <span>Keluar ke Beranda Website</span>
+        </a>
+      </form>
+
+      <div class="login-footer">
+        &copy; 2026 Program Magang Digital &bull; Secure Administrator Portal
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script Logika Autentikasi Login -->
+  <script>
+    // Toggle visibilitas kata sandi
+    function togglePasswordVisibility() {
+      const input = document.getElementById('passwordInput');
+      const icon = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+      }
+    }
+
+    // Handle form login terhubung ke Database MySQL & Fleksibel di Semua Mode
+    async function handleLogin(e) {
+      e.preventDefault();
+
+      const usernameInput = document.getElementById('usernameInput').value.trim();
+      const passwordInput = document.getElementById('passwordInput').value;
+      const alertError = document.getElementById('alertError');
+      const alertMessage = document.getElementById('alertMessage');
+      const btnLogin = document.getElementById('btnLogin');
+
+      // Indikator status loading
+      btnLogin.disabled = true;
+      const originalBtnHTML = btnLogin.innerHTML;
+      btnLogin.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status"></span> Memverifikasi...`;
+      alertError.classList.remove('show');
+
+      // Kredensial akun admin resmi
+      const isOfficialAdmin = (
+        (usernameInput.toLowerCase() === 'admin' || usernameInput.toLowerCase() === 'admin@gomagangdigital.vercel.app') &&
+        passwordInput === 'adminmagang'
+      );
+
+      // 1. Jika dibuka melalui Web Server HTTP (Localhost XAMPP / Laragon / Server)
+      if (window.location.protocol.startsWith('http')) {
+        try {
+          const response = await fetch('api_login.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              username: usernameInput,
+              password: passwordInput
+            })
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+              loginSuccess(result.user.username, result.user.fullName, result.user.role);
+              return;
+            } else {
+              showLoginError('Username atau password yang Anda masukkan salah. Silakan coba lagi.');
+              resetButton();
+              return;
+            }
+          }
+        } catch (netErr) {
+          console.warn('Backend API tidak merespons, beralih ke verifikasi lokal:', netErr);
+        }
+      }
+
+      // 2. Mode Langsung / Standalone (file:/// maupun fallback offline)
+      if (isOfficialAdmin) {
+        loginSuccess('admin', 'Fachry Rendy P', 'Super Admin');
+        return;
+      }
+
+      // 3. Jika username atau password tidak sesuai
+      showLoginError('Username atau password yang Anda masukkan salah. Silakan coba lagi.');
+      resetButton();
+
+      function loginSuccess(username, fullName, role) {
+        const sessionData = {
+          isLoggedIn: true,
+          username: username,
+          fullName: fullName || 'Fachry Rendy P',
+          role: role || 'Super Admin',
+          loginTime: new Date().toISOString()
+        };
+        sessionStorage.setItem('magang_admin_session', JSON.stringify(sessionData));
+        localStorage.setItem('magang_admin_session', JSON.stringify(sessionData));
+
+        btnLogin.innerHTML = `<i class="bi bi-check-circle-fill me-2 text-success"></i> Berhasil Masuk!`;
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 500);
+      }
+
+      function showLoginError(msg) {
+        alertError.classList.remove('show');
+        void alertError.offsetWidth; // trigger reflow
+        alertMessage.innerHTML = msg;
+        alertError.classList.add('show');
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+
+      function resetButton() {
+        btnLogin.disabled = false;
+        btnLogin.innerHTML = originalBtnHTML;
+      }
+    }
+
+    // Auto-redirect jika sudah memiliki sesi login aktif
+    window.addEventListener('DOMContentLoaded', () => {
+      const activeSession = sessionStorage.getItem('magang_admin_session') || localStorage.getItem('magang_admin_session');
+      if (activeSession) {
+        try {
+          const parsed = JSON.parse(activeSession);
+          if (parsed && parsed.isLoggedIn) {
+            // Pengguna sudah login, namun beri opsi jika ingin tetap di sini
+          }
+        } catch (e) {}
+      }
+    });
+  </script>
+
+</body>
+
+</html>
+
